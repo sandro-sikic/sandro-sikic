@@ -1,6 +1,18 @@
-<h1 align="left">Hi 👋!</h1>
+# 👋
 
-###
+## Projects
+
+- [tsyoutube.com](https://tsyoutube.com) - Youtube client with a focus on transcription
+- [rapidsearch.io](https://rapidsearch.io) - Search the same query across multiple websites
+- [sparkai.site](https://sparkai.site) - 2023 Hackatlon submission for image generation AI
+
+## Sites
+
+- [atechusluge.hr](https://atechusluge.hr)
+- [dreamviewapartment.com](https://dreamviewapartment.com)
+- [itsolutions.hr](https://itsolutions.hr)
+- [linija-art](https://linija-art.com)
+- [munehemp.com](https://munehemp.com)
 
 <br clear="both">
 
@@ -13,13 +25,13 @@
   <img src="https://github-readme-stats.vercel.app/api/top-langs?username=sandro-sikic&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=5&theme=dark&hide_border=false" height="150" alt="languages graph"  />
 </div>
 
+<br clear="both">
+
 ###
 
 <p align="left">Creative</p>
 
 ###
-
-<br clear="both">
 
 <div align="left">
   <img src="https://skillicons.dev/icons?i=ai" height="30" alt="adobeillustrator logo"  />

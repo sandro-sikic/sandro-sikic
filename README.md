@@ -1,20 +1,21 @@
 <img width="100%" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/banner.png"  />
+<base target="_blank">
 
 ### Projects
 
-- <a target="_blank" href="https://tsyoutube.com">tsyoutube.com</a> - Youtube client with a focus on transcription
-- <a target="_blank" href="https://rapidsearch.io">rapidsearch.io</a> - Search the same query across multiple websites
-- <a target="_blank" href="https://sparkai.site">sparkai.site</a> - 2023 Hackatlon submission for image generation AI
+- [tsyoutube.com](https://tsyoutube.com) - Youtube client with a focus on transcription
+- [rapidsearch.io](https://rapidsearch.io) - Search the same query across multiple websites
+- [sparkai.site](https://sparkai.site) - 2023 Hackatlon submission for image generation AI
 - Pakkt - realestate agency management software
 
 ### Sites
 
-- <a target="_blank" href="https://cool-silo.com">cool-silo.com</a>
-- <a target="_blank" href="https://atechusluge.hr">atechusluge.hr</a>
-- <a target="_blank" href="https://dreamviewapartment.com">dreamviewapartment.com</a>
-- <a target="_blank" href="https://itsolutions.hr">itsolutions.hr</a>
-- <a target="_blank" href="https://linija-art.com">linija-art.com</a>
-- <a target="_blank" href="https://munehemp.com">munehemp.com</a>
+- [cool-silo.com](https://cool-silo.com)
+- [atechusluge.hr](https://atechusluge.hr)
+- [dreamviewapartment.com](https://dreamviewapartment.com)
+- [itsolutions.hr](https://itsolutions.hr)
+- [linija-art](https://linija-art.com)
+- [munehemp.com](https://munehemp.com)
 
 <br clear="both">
 

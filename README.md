@@ -1,5 +1,4 @@
-<img width="100%" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/banner.png"  />
-<base target="_blank">
+<img width="100%" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/banner.png" style="border-radius: 10px" />
 
 ### Projects
 
@@ -44,7 +43,7 @@
 
 ### Skills
 
-<img align="right" height="150" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/cat.webp"  />
+<img align="right" height="150" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/cat.webp" style="border-radius: 50%" />
 
 <div align="left">
   <img src="https://skillicons.dev/icons?i=arduino" height="40" alt="arduino logo"  />

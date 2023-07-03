@@ -1,13 +1,13 @@
-# 👋
+<img width="100%" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/banner.png"  />
 
-## Projects
+### Projects
 
 - [tsyoutube.com](https://tsyoutube.com) - Youtube client with a focus on transcription
 - [rapidsearch.io](https://rapidsearch.io) - Search the same query across multiple websites
 - [sparkai.site](https://sparkai.site) - 2023 Hackatlon submission for image generation AI
 - Pakkt - realestate agency management software
 
-## Sites
+### Sites
 
 - [atechusluge.hr](https://atechusluge.hr)
 - [dreamviewapartment.com](https://dreamviewapartment.com)
@@ -17,7 +17,7 @@
 
 <br clear="both">
 
-<img align="right" height="200" src="https://media2.giphy.com/media/wwg1suUiTbCY8H8vIA/giphy.gif?cid=ecf05e47syixjt7o2dhek1ptbiw5youeasglpbe4yftbb8r5&ep=v1_gifs_search&rid=giphy.gif&ct=g"  />
+<img align="right" height="200" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/cat.webp"  />
 
 ###
 
@@ -28,11 +28,7 @@
 
 <br clear="both">
 
-###
-
-<p align="left">Creative</p>
-
-###
+### Creative
 
 <div align="left">
   <img src="https://skillicons.dev/icons?i=ai" height="30" alt="adobeillustrator logo"  />
@@ -46,11 +42,7 @@
   <img src="https://skillicons.dev/icons?i=figma" height="30" alt="figma logo"  />
 </div>
 
-###
-
-<p align="left">Skills</p>
-
-###
+### Skills
 
 <div align="left">
   <img src="https://skillicons.dev/icons?i=arduino" height="40" alt="arduino logo"  />
@@ -128,8 +120,4 @@
   <img src="https://skillicons.dev/icons?i=wordpress" height="40" alt="wordpress logo"  />
 </div>
 
-###
-
 <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/output/snake.svg" alt="Snake animation" />
-
-###

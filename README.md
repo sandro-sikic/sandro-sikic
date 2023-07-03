@@ -43,7 +43,7 @@
 
 ### Skills
 
-<img align="right" height="150" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/cat.webp" style="border-radius: 50%" />
+<img align="right" height="150" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/cat.gif" style="border-radius: 50%" />
 
 <div align="left">
   <img src="https://skillicons.dev/icons?i=arduino" height="40" alt="arduino logo"  />

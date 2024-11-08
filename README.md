@@ -29,7 +29,7 @@
 ### Creative
 
 <div align="left">
-  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/icons/AiScript-Dark.svg" height="30" alt="adobeillustrator logo"  />
+  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/icons/Illustrator.svg" height="30" alt="adobeillustrator logo"  />
   <img width="12" />
   <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/icons/Photoshop.svg" height="30" alt="adobephotoshop logo"  />
   <img width="12" />

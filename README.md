@@ -103,8 +103,6 @@ I’ve found my tech stack sweet spot, focusing on:
 
 ### 📌 Featured Projects
 
-- [fun2play.online](https://fun2play.online) - Fun games to play online 
-
 1. **[TsYoutube](https://tsyoutube.com)**  
    *Description*: A learning platform integrated with youtube with a focus on transcription
    

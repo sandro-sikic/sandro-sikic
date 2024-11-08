@@ -3,8 +3,8 @@
 ### Projects
 
 - [tsyoutube.com](https://tsyoutube.com) - Youtube client with a focus on transcription
-- [rapidsearch.io](https://rapidsearch.io) - Search the same query across multiple websites
-- [sparkai.site](https://sparkai.site) - 2023 Hackatlon submission for image generation AI
+- [quickmultisearch.com](https://quickmultisearch.com) - Search the same query across multiple websites
+- [fun2play.online](https://fun2play.online) - Fun games to play online 
 - Pakkt - realestate agency management software
 
 ### Sites
@@ -12,7 +12,6 @@
 - [cool-silo.com](https://cool-silo.com)
 - [atechusluge.hr](https://atechusluge.hr)
 - [dreamviewapartment.com](https://dreamviewapartment.com)
-- [itsolutions.hr](https://itsolutions.hr)
 - [linija-art](https://linija-art.com)
 - [munehemp.com](https://munehemp.com)
 
@@ -22,7 +21,7 @@
 
 <div align="left">
   <img src="https://streak-stats.demolab.com?user=sandro-sikic&locale=en&mode=daily&theme=dark&hide_border=false&border_radius=5" height="150" alt="streak graph"  />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=sandro-sikic&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=5&theme=dark&hide_border=false" height="150" alt="languages graph"  />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=sandro-sikic&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=6&theme=dark&hide_border=false" height="150" alt="languages graph"  />
 </div>
 
 <br clear="both">
@@ -30,15 +29,15 @@
 ### Creative
 
 <div align="left">
-  <img src="https://skillicons.dev/icons?i=ai" height="30" alt="adobeillustrator logo"  />
+  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/icons/AiScript-Dark.svg" height="30" alt="adobeillustrator logo"  />
   <img width="12" />
-  <img src="https://skillicons.dev/icons?i=ps" height="30" alt="adobephotoshop logo"  />
+  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/icons/Photoshop.svg" height="30" alt="adobephotoshop logo"  />
   <img width="12" />
-  <img src="https://skillicons.dev/icons?i=pr" height="30" alt="adobepremierepro logo"  />
+  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/icons/Premiere.svg" height="30" alt="adobepremierepro logo"  />
   <img width="12" />
-  <img src="https://skillicons.dev/icons?i=autocad" height="30" alt="autocad logo"  />
+  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/icons/AutoCAD-Dark.svg" height="30" alt="autocad logo"  />
   <img width="12" />
-  <img src="https://skillicons.dev/icons?i=figma" height="30" alt="figma logo"  />
+  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/icons/Figma-Dark.svg" height="30" alt="figma logo"  />
 </div>
 
 ### Skills
@@ -52,6 +51,8 @@
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=css" height="40" alt="css3 logo"  />
   <img width="12" />
+  <img src="https://skillicons.dev/icons?i=cypress" height="40" alt="cypress logo"  />
+  <img width="12" />
   <img src="https://skillicons.dev/icons?i=d3" height="40" alt="d3js logo"  />
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=django" height="40" alt="django logo"  />
@@ -61,6 +62,8 @@
   <img src="https://skillicons.dev/icons?i=electron" height="40" alt="electron logo"  />
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=fastapi" height="40" alt="fastapi logo"  />
+  <img width="12" />
+  <img src="https://skillicons.dev/icons?i=go" height="40" alt="go logo"  />
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=git" height="40" alt="git logo"  />
   <img width="12" />

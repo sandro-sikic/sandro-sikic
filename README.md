@@ -1,52 +1,23 @@
 <img width="100%" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/banner.png" style="border-radius: 10px" />
 
-### Projects
 
-- [tsyoutube.com](https://tsyoutube.com) - Youtube client with a focus on transcription
-- [quickmultisearch.com](https://quickmultisearch.com) - Search the same query across multiple websites
-- [fun2play.online](https://fun2play.online) - Fun games to play online 
-- Pakkt - realestate agency management software
+### 🚀 Software Engineer | Full-Stack Developer | Tech Enthusiast
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://buymeacoffee.com/sandrosikic">
-  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/buymeacoffee.png" height="50">
-</a>
+I’m a software engineer with a passion for building efficient, scalable applications. With years of experience in the field, I’m always excited to expand my knowledge, improve my skills, and share my projects with others.
 
-### Sites
+## 🛠️ Tech Stack
 
-- [cool-silo.com](https://cool-silo.com)
-- [atechusluge.hr](https://atechusluge.hr)
-- [dreamviewapartment.com](https://dreamviewapartment.com)
-- [linija-art](https://linija-art.com)
-- [munehemp.com](https://munehemp.com)
+I’ve found my tech stack sweet spot, focusing on:
 
-<br clear="both">
+- **Languages**: JavaScript (with Next.js), Go (Golang)
+- **Frameworks**: Next.js for web development, React Native for mobile development, Fiber for backend
+- **Databases**: PostgreSQL, Qdrant, Elasticsearch
+- **Cloud & DevOps**: AWS, Docker, GitHub Actions
 
-## <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/statistics.gif" height="30"><b> Statistics</b>
-
-<div align="left">
-  <img src="https://streak-stats.demolab.com?user=sandro-sikic&locale=en&mode=daily&theme=dark&hide_border=false&border_radius=5" height="150" alt="streak graph"  />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=sandro-sikic&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=6&theme=dark&hide_border=false" height="150" alt="languages graph"  />
-</div>
-
-<br clear="both">
-
-## Creative
-
-<div align="left">
-  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/assets/icons/Illustrator.svg" height="30" alt="adobeillustrator logo"  />
-  <img width="12" />
-  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/assets/icons/Photoshop.svg" height="30" alt="adobephotoshop logo"  />
-  <img width="12" />
-  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/assets/icons/Premiere.svg" height="30" alt="adobepremierepro logo"  />
-  <img width="12" />
-  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/assets/icons/AutoCAD-Dark.svg" height="30" alt="autocad logo"  />
-  <img width="12" />
-  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/assets/icons/Figma-Dark.svg" height="30" alt="figma logo"  />
-</div>
 
 ## <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/code.webp" width ="20"><b> Skills</b>
 
-<img align="right" height="150" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/cat.gif" style="border-radius: 50%" />
+<img align="right" height="150" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/cat.gif" style="border-radius: 50%" />
 
 <div align="left">
   <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/assets/icons/Arduino.svg" height="40" alt="arduino logo"  />
@@ -127,6 +98,80 @@
   <img width="12" />
   <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/assets/icons/Wordpress.svg" height="40" alt="wordpress logo"  />
 </div>
+
+## 📂 My Projects
+
+### 📌 Featured Projects
+
+- [fun2play.online](https://fun2play.online) - Fun games to play online 
+
+1. **[TsYoutube](https://tsyoutube.com)**  
+   *Description*: A learning platform integrated with youtube with a focus on transcription
+   
+2. **[QuickMultiSearch](https://quickmultisearch.com)**  
+   *Description*: A powerful search tool built for rapid, multi-source search, designed to save time and streamline the search process. 
+   
+3. **[Fun2Play](https://fun2play.online)**  
+   *Description*: Interactive platform for online multiplayer turn based games.
+   
+4. **Pakkt**  
+   *Description*: A comprehensive real estate management software designed to streamline the process of managing properties, clients, and transactions.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://buymeacoffee.com/sandrosikic">
+  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/buymeacoffee.webp" height="50">
+</a>
+
+### 📚 Other Sites
+
+- [cool-silo.com](https://cool-silo.com)
+- [atechusluge.hr](https://atechusluge.hr)
+- [dreamviewapartment.com](https://dreamviewapartment.com)
+- [linija-art](https://linija-art.com)
+- [munehemp.com](https://munehemp.com)
+
+
+## 🌱 What I'm Learning
+
+I’m committed to continuous growth in the tech world. Here’s what I’m currently focused on:
+
+- **DevOps** - Building skills in infrastructure management and deployment practices
+- **CI/CD** - Setting up continuous integration and deployment pipelines for seamless development
+
+
+## <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/statistics.gif" height="30"><b> Statistics</b>
+
+<div align="left">
+  <img src="https://streak-stats.demolab.com?user=sandro-sikic&locale=en&mode=daily&theme=dark&hide_border=false&border_radius=5" height="150" alt="streak graph"  />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=sandro-sikic&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=6&theme=dark&hide_border=false" height="150" alt="languages graph"  />
+</div>
+
+<br clear="both">
+
+
+## 👨‍💻 About Me
+
+I'm the CEO of Insago, bringing a strong background in software engineering with hands-on experience in application development, design, deployment, and quality assurance. Over the years, I’ve honed my skills in creating high-quality software solutions that not only meet technical standards but also provide a seamless user experience.
+
+As both a leader and a developer, I’m passionate about innovation and constantly aim to push the boundaries of technology in ways that can drive value. When I'm not immersed in code or leading my team, I enjoy capturing life's moments through photography.
+
+## 🎨 Design Tools
+
+<div align="left">
+  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/assets/icons/Illustrator.svg" height="30" alt="adobeillustrator logo"  />
+  <img width="12" />
+  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/assets/icons/Photoshop.svg" height="30" alt="adobephotoshop logo"  />
+  <img width="12" />
+  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/assets/icons/Premiere.svg" height="30" alt="adobepremierepro logo"  />
+  <img width="12" />
+  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/assets/icons/AutoCAD-Dark.svg" height="30" alt="autocad logo"  />
+  <img width="12" />
+  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/assets/icons/Figma-Dark.svg" height="30" alt="figma logo"  />
+</div>
+
+
+## 📫 Get in Touch
+
+- LinkedIn: [Sandro Šikić](https://www.linkedin.com/in/sandro-%C5%A1iki%C4%87/)
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/output/github-snake-dark.svg" />

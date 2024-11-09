@@ -1,4 +1,4 @@
-name: Generate snake animation
+name: Generate state
 
 on:
   schedule:

@@ -148,37 +148,7 @@ I’m committed to continuous growth in the tech world. Here’s what I’m curr
 - **CI/CD** - Setting up continuous integration and deployment pipelines for seamless development
 
 
-## <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/statistics.gif" height="30"><b> Statistics</b>
-
-<div align="left">
-<picture style="height: 160px">
-  <source
-    srcset="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/stats-dark.svg"
-    media="(prefers-color-scheme: dark)"
-  />
-  <source
-    srcset="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/stats.svg"
-    media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
-  />
-  <img height="160" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/stats.svg" />
-</picture>
-
-
-<picture>
-  <source
-    srcset="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/langs-dark.svg"
-    media="(prefers-color-scheme: dark)"
-  />
-  <source
-    srcset="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/langs.svg"
-    media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
-  />
-  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/langs.svg" />
-</picture>
-</div>
-
 <br clear="both">
-
 
 ## 👨‍💻 About Me
 

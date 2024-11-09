@@ -139,6 +139,8 @@ I’m committed to continuous growth in the tech world. Here’s what I’m curr
 ## <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/statistics.gif" height="30"><b> Statistics</b>
 
 <div align="left">
+  <img alt="github-snake" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/stats.svg" />
+
   <img src="https://streak-stats.demolab.com?user=sandro-sikic&locale=en&mode=daily&theme=dark&hide_border=false&border_radius=5" height="150" alt="streak graph"  />
   <img src="https://github-readme-stats.vercel.app/api/top-langs?username=sandro-sikic&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=6&theme=dark&hide_border=false" height="150" alt="languages graph"  />
 </div>
@@ -172,7 +174,7 @@ As both a leader and a developer, I’m passionate about innovation and constant
 - LinkedIn: [Sandro Šikić](https://www.linkedin.com/in/sandro-%C5%A1iki%C4%87/)
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/output/github-snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/output/github-snake.svg" />
-  <img alt="github-snake" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/output/github-snake.svg" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/snake/github-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/snake/github-snake.svg" />
+  <img alt="github-snake" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/snake/github-snake.svg" />
 </picture>

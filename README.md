@@ -17,9 +17,19 @@ I’ve found my tech stack sweet spot, focusing on:
 
 ## <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/code.webp" width ="20"><b> Skills</b>
 
-<img media="(prefers-color-scheme:dark)"  align="right" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/langs-dark.svg" />
 
-<img media="(prefers-color-scheme:light)"  align="right" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/langs.svg" />
+<picture align="right">
+  <source align="right"
+    srcset="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/langs-dark.svg"
+    media="(prefers-color-scheme: dark)"
+  />
+  <source align="right"
+    srcset="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/langs.svg"
+    media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
+  />
+  <img align="right" 
+    src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/langs.svg" />
+</picture>
 
 <div align="left">
   <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/assets/icons/Arduino.svg" height="40" alt="arduino logo"  />

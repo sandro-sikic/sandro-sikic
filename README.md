@@ -17,7 +17,9 @@ I’ve found my tech stack sweet spot, focusing on:
 
 ## <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/code.webp" width ="20"><b> Skills</b>
 
-<img align="right" height="150" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/cat.gif" style="border-radius: 50%" />
+<img media="(prefers-color-scheme:dark)"  align="right" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/langs-dark.svg" />
+
+<img media="(prefers-color-scheme:light)"  align="right" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/langs.svg" />
 
 <div align="left">
   <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/assets/icons/Arduino.svg" height="40" alt="arduino logo"  />
@@ -152,7 +154,7 @@ I’m committed to continuous growth in the tech world. Here’s what I’m curr
 </picture>
 
 
-<picture style="height: 160px">
+<picture>
   <source
     srcset="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/langs-dark.svg"
     media="(prefers-color-scheme: dark)"
@@ -161,7 +163,7 @@ I’m committed to continuous growth in the tech world. Here’s what I’m curr
     srcset="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/langs.svg"
     media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
   />
-  <img height="160" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/langs.svg" />
+  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/langs.svg" />
 </picture>
 </div>
 

@@ -139,7 +139,7 @@ I’m committed to continuous growth in the tech world. Here’s what I’m curr
 ## <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/statistics.gif" height="30"><b> Statistics</b>
 
 <div align="left">
-<picture>
+<picture style="height: 150px">
   <source
     srcset="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/stats-dark.svg"
     media="(prefers-color-scheme: dark)"
@@ -148,11 +148,11 @@ I’m committed to continuous growth in the tech world. Here’s what I’m curr
     srcset="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/stats.svg"
     media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
   />
-  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/stats.svg" />
+  <img height="150" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/stats.svg" />
 </picture>
 
 
-<picture>
+<picture style="height: 150px">
   <source
     srcset="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/langs-dark.svg"
     media="(prefers-color-scheme: dark)"
@@ -161,7 +161,7 @@ I’m committed to continuous growth in the tech world. Here’s what I’m curr
     srcset="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/langs.svg"
     media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
   />
-  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/langs.svg" />
+  <img height="150" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/stats/langs.svg" />
 </picture>
 </div>
 

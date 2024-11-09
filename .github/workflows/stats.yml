@@ -19,8 +19,17 @@ jobs:
         uses: UlyssesZh/grs-action@v0
         with:
           card: langs
-          options: username=${{ github.repository_owner }}&layout=compact&hide_title=true&hide=tex,html&langs_count=16&hide_border=true&disable_animations=true&theme=${{ matrix.theme }}
+          options: username=${{ github.repository_owner }}&layout=compact&hide_title=true&hide=tex,html&langs_count=16&hide_border=true
           path: grs/langs.svg
+        env:
+          PAT_1: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate Lang Stats
+        uses: UlyssesZh/grs-action@v0
+        with:
+          card: langs
+          options: username=${{ github.repository_owner }}&layout=compact&hide_title=true&hide=tex,html&langs_count=16&hide_border=true&theme=dark
+          path: grs/langs-dark.svg
         env:
           PAT_1: ${{ secrets.GITHUB_TOKEN }}
 
@@ -28,12 +37,21 @@ jobs:
         uses: UlyssesZh/grs-action@v0
         with:
           card: stats
-          options: username=${{ github.repository_owner }}&layout=compact&hide_title=true&hide=tex,html&langs_count=16&hide_border=true&disable_animations=true&theme=${{ matrix.theme }}
+          options: username=${{ github.repository_owner }}&layout=compact&hide_title=true&hide=tex,html&langs_count=16&hide_border=true&disable_animations=true
           path: grs/stats.svg
         env:
           PAT_1: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: push snake.svg to the output branch
+      - name: Generate General Stats
+        uses: UlyssesZh/grs-action@v0
+        with:
+          card: stats
+          options: username=${{ github.repository_owner }}&layout=compact&hide_title=true&hide=tex,html&langs_count=16&hide_border=true&disable_animations=true&theme=dark
+          path: grs/stats-dark.svg
+        env:
+          PAT_1: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: push stats to the stats branch
         uses: crazy-max/ghaction-github-pages@v2.6.0
         with:
           target_branch: stats

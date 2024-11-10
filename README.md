@@ -116,7 +116,7 @@ I’ve found my tech stack sweet spot, focusing on:
 ### 📌 Featured Projects
 
 1. **[TsYoutube](https://tsyoutube.com)**  
-   *Description*: A learning platform integrated with youtube with a focus on transcription
+   *Description*: A learning platform integrated with youtube with a focus on transcription.
    
 2. **[QuickMultiSearch](https://quickmultisearch.com)**  
    *Description*: A powerful search tool built for rapid, multi-source search, designed to save time and streamline the search process. 

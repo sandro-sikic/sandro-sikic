@@ -10,14 +10,13 @@ docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -e DOCKER_HOST=
 #### NPM update
 ```
 npx npm-check -u
-
 ```
 
 #### PlantUML theme
 
 ```
 @startuml Tenderi
-!theme blueprint from https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/plantuml/themes
+!theme blueprint from https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/plantuml/themes
 ```
 
 
@@ -36,11 +35,11 @@ npx npm-check -u
 ```
   "background.fullscreen": {
     "images": [
-      "https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/images/futuristic_alpha_cat.png",
-      "https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/images/retrowave_cat.png",
-      "https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/images/retrowave_cat_with_glasses.png",
-      "https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/images/sunglasses_at_night.png",
-      "https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/images/wip_synthwave_city__gizille_the_cat.png"
+      "https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/images/futuristic_alpha_cat.png",
+      "https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/images/retrowave_cat.png",
+      "https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/images/retrowave_cat_with_glasses.png",
+      "https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/images/sunglasses_at_night.png",
+      "https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/images/wip_synthwave_city__gizille_the_cat.png"
     ],
     "opacity": 0.97,
     "size": "cover",

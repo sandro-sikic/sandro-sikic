@@ -1,9 +1,12 @@
 <img width="100%" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/banner.png" style="border-radius: 10px" />
 
 
-### 🚀 Software Engineer | Full-Stack Developer | Tech Enthusiast
+
+## 🚀 Software Engineer | Full-Stack Developer | Tech Enthusiast
 
 I’m a software engineer with a passion for building efficient, scalable applications. With years of experience in the field, I’m always excited to expand my knowledge, improve my skills, and share my projects with others.
+
+<br clear="both">
 
 ## 🛠️ Tech Stack
 
@@ -14,6 +17,8 @@ I’ve found my tech stack sweet spot, focusing on:
 - **Databases**: PostgreSQL, Qdrant, Elasticsearch
 - **Cloud & DevOps**: AWS, Docker, GitHub Actions
 
+
+<br clear="both">
 
 ## <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/code.webp" width ="20"><b> Skills</b>
 
@@ -111,6 +116,8 @@ I’ve found my tech stack sweet spot, focusing on:
   <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/assets/icons/Wordpress.svg" height="40" alt="wordpress logo"  />
 </div>
 
+<br clear="both">
+
 ## 📂 My Projects
 
 ### 📌 Featured Projects
@@ -131,6 +138,8 @@ I’ve found my tech stack sweet spot, focusing on:
   <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/buymeacoffee.webp" height="50">
 </a>
 
+<br clear="both">
+
 ### 📚 Other Sites
 
 - [cool-silo.com](https://cool-silo.com)
@@ -139,6 +148,7 @@ I’ve found my tech stack sweet spot, focusing on:
 - [linija-art](https://linija-art.com)
 - [munehemp.com](https://munehemp.com)
 
+<br clear="both">
 
 ## 🌱 What I'm Learning
 
@@ -155,6 +165,8 @@ I’m committed to continuous growth in the tech world. Here’s what I’m curr
 I'm the CEO of Insago, bringing a strong background in software engineering with hands-on experience in application development, design, deployment, and quality assurance. Over the years, I’ve honed my skills in creating high-quality software solutions that not only meet technical standards but also provide a seamless user experience.
 
 As both a leader and a developer, I’m passionate about innovation and constantly aim to push the boundaries of technology in ways that can drive value. When I'm not immersed in code or leading my team, I enjoy capturing life's moments through photography.
+
+<br clear="both">
 
 ## 🎨 Design Tools
 

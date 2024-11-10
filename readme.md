@@ -145,7 +145,7 @@ I’ve found my tech stack sweet spot, focusing on:
 - [cool-silo.com](https://cool-silo.com)
 - [atechusluge.hr](https://atechusluge.hr)
 - [dreamviewapartment.com](https://dreamviewapartment.com)
-- [linija-art](https://linija-art.com)
+- [linija-art.com](https://linija-art.com)
 - [munehemp.com](https://munehemp.com)
 
 <br clear="both">

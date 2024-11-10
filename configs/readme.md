@@ -2,7 +2,7 @@
 
 ## 📜 Commands
 
-### 🐳 Docker DRY TUI
+### 🐳 Docker TUI
 
 Run Docker's Dry TUI with the following command:
 

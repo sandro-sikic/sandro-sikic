@@ -1,4 +1,4 @@
-name: Generate state
+name: Statistics
 
 on:
   schedule:
@@ -19,7 +19,7 @@ jobs:
         uses: UlyssesZh/grs-action@v0
         with:
           card: langs
-          options: username=${{ github.repository_owner }}&layout=compact&hide_title=true&hide=tex,html&langs_count=16&hide_border=true
+          options: username=${{ github.repository_owner }}&layout=compact&hide_title=true&hide=tex,html&langs_count=14&hide_border=true
           path: grs/langs.svg
         env:
           PAT_1: ${{ secrets.TOKEN }}
@@ -28,7 +28,7 @@ jobs:
         uses: UlyssesZh/grs-action@v0
         with:
           card: langs
-          options: username=${{ github.repository_owner }}&layout=compact&hide_title=true&hide=tex,html&langs_count=16&hide_border=true&theme=dark
+          options: username=${{ github.repository_owner }}&layout=compact&hide_title=true&hide=tex,html&langs_count=14&hide_border=true&theme=dark
           path: grs/langs-dark.svg
         env:
           PAT_1: ${{ secrets.TOKEN }}

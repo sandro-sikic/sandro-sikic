@@ -39,7 +39,15 @@ Apply a theme for PlantUML diagrams:
 ### 🛠️ VSCode
 
 1. Install the [Custom CSS and JS Loader](https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css) extension.
-2. Link the CSS and JS files in the `settings.json`.
+2. Link the CSS and JS files in the `settings.json` by adding the following configuration:
+
+   ```json
+   "vscode_custom_css.imports": [
+     "https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/vscode/style.css",
+     "https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/vscode/glow.js"
+   ]
+   ```
+
 3. Run the command `Enable custom CSS and JS`.
 
 #### 🌄 Background Images

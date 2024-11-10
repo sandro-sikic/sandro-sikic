@@ -182,6 +182,7 @@ As both a leader and a developer, I’m passionate about innovation and constant
   <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/assets/icons/Figma-Dark.svg" height="30" alt="figma logo"  />
 </div>
 
+<br clear="both">
 
 ## 📫 Get in Touch
 

@@ -1,0 +1,50 @@
+{
+	"version": "2",
+	"templates": [
+		{
+			"type": 2,
+			"title": "Wordpress",
+			"description": "Wordpress setup with a MySQL database",
+			"note": "Deploys a Wordpress instance connected to a MySQL database.",
+			"categories": ["CMS"],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
+			"repository": {
+				"url": "https://github.com/sandro-sikic/configs",
+				"stackfile": "portainer/stacks/wordpress/docker-stack.yml"
+			},
+			"env": [
+				{
+					"name": "HOSTNAME",
+					"label": "Website Hostname",
+					"description": "Url for nginx proxy redirect to."
+				}
+			]
+		},
+		{
+			"type": 2,
+			"title": "Static site",
+			"description": "Static site with nginx, host any folder on local machine, read only",
+			"note": "Deploys a Nginx instance with mounted local volume in read only mode.",
+			"categories": ["STATIC"],
+			"platform": "linux",
+			"logo": "https://d1q6f0aelx0por.cloudfront.net/product-logos/library-nginx-logo.png",
+			"repository": {
+				"url": "https://github.com/sandro-sikic/configs",
+				"stackfile": "portainer/stacks/static_host/docker-stack.yml"
+			},
+			"env": [
+				{
+					"name": "ZIPPED_SITE_LINK",
+					"label": "Zipped site link",
+					"description": "Url of the zipped file to be mounted and proxied."
+				},
+				{
+					"name": "HOSTNAME",
+					"label": "Website Hostname",
+					"description": "Url for nginx proxy redirect to."
+				}
+			]
+		}
+	]
+}

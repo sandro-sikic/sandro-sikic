@@ -1,0 +1,17 @@
+dbgate:
+  image: dbgate/dbgate
+  restart: always
+  logging:
+    driver: none
+  ports:
+    - 3001:3000
+  volumes:
+    - dbgate:/root/.dbgate
+  environment:
+    CONNECTIONS: con1
+    LABEL_con1: Postgres
+    SERVER_con1: ${DATABASE_HOST:-postgres}
+    USER_con1: ${DATABASE_USER:-postgres}
+    PASSWORD_con1: ${DATABASE_PASSWORD:-postgres}
+    PORT_con1: ${DATABASE_PORT:-5432}
+    ENGINE_con1: postgres@dbgate-plugin-postgres	

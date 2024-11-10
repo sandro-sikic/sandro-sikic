@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  download_and_unzip:
+    image: bash:latest
+    volumes:
+      - data:/data
+    command:
+      [
+        'bash',
+        '-c',
+        'rm -r /download; mkdir /download; rm -r /data/*; wget ${ZIPPED_SITE_LINK} -O /download/site.zip; unzip /download/site.zip -d /data/',
+      ]
+    deploy:
+      restart_policy:
+        condition: none
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - data:/usr/share/nginx/html:ro
+    restart: always
+    environment:
+      VIRTUAL_HOST: ${HOSTNAME}
+      LETSENCRYPT_HOST: ${HOSTNAME}
+      VIRTUAL_PORT: 80
+    networks:
+      - proxy
+
+volumes:
+  data:
+networks:
+  proxy:
+    external:
+      name: nginx-proxy

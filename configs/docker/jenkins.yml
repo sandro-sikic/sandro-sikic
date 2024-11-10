@@ -1,0 +1,23 @@
+# recommended to use a encrypted proxy when interacting with jenkins server over public internet otherwise use a vpn on the server local network
+
+jenkins:
+  image: jenkins/jenkins:latest
+  privileged: true
+  user: root
+  volumes:
+    - jenkins_home:/var/jenkins_home
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /usr/local/bin/docker:/usr/local/bin/docker
+  # environment:
+  #   - VIRTUAL_HOST=jenkins.example.com
+  #   - VIRTUAL_PORT=8080
+  #   - LETSENCRYPT_HOST=jenkins.example.com
+  # networks:
+  #   - default
+  #   - proxy_network
+
+volumes:
+  jenkins_home:
+# networks:
+#   proxy_network:
+#     external: true

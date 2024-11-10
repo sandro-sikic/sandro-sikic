@@ -1,17 +1,22 @@
-dbgate:
-  image: dbgate/dbgate
-  restart: always
-  logging:
-    driver: none
-  ports:
-    - 3001:3000
-  volumes:
-    - dbgate:/root/.dbgate
-  environment:
-    CONNECTIONS: con1
-    LABEL_con1: Postgres
-    SERVER_con1: ${DATABASE_HOST:-postgres}
-    USER_con1: ${DATABASE_USER:-postgres}
-    PASSWORD_con1: ${DATABASE_PASSWORD:-postgres}
-    PORT_con1: ${DATABASE_PORT:-5432}
-    ENGINE_con1: postgres@dbgate-plugin-postgres	
+version: '3'
+
+services:
+  dbgate:
+    image: dbgate/dbgate
+    restart: always
+    ports:
+      - 3001:3000
+    volumes:
+      - ./db.sqlite3:/app/db.sqlite3
+    environment:
+      CONNECTIONS: sqlite,pgsql
+      LABEL_sqlite: SQLITE
+      FILE_sqlite: /app/db.sqlite3
+      ENGINE_sqlite: sqlite@dbgate-plugin-sqlite
+
+      LABEL_pgsql: Postgres
+      SERVER_pgsql: ${DATABASE_HOST:-postgres}
+      USER_pgsql: ${DATABASE_USER:-postgres}
+      PASSWORD_pgsql: ${DATABASE_PASSWORD:-postgres}
+      PORT_pgsql: ${DATABASE_PORT:-5432}
+      ENGINE_pgsql: postgres@dbgate-plugin-postgres

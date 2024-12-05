@@ -2,7 +2,7 @@
   
 apt update
 
-apt install tmux screen ncdu htop git curl vim -y
+apt install tmux screen ncdu htop git curl make vim -y
 apt install apt-transport-https ca-certificates gnupg2 software-properties-common -y
 
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -

@@ -2,11 +2,13 @@
 local M = {}
 
 M.base46 = {
-  theme = "cattpuccin",
-  hl_override = highlights.override,
-  hl_add = highlights.add,
+	theme = "onedark",
+  theme = "catppuccin",
 
-  transparency = false,
+	-- hl_override = {
+	-- 	Comment = { italic = true },
+	-- 	["@comment"] = { italic = true },
+	-- },
 }
 
 return M

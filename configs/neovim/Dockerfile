@@ -10,6 +10,6 @@ RUN nvim --headless "+Lazy! sync" +qa
 
 COPY chadrc.lua .config/nvim/lua
 
-RUN nvim --headless "+so ~/.config/nvim/init.lua" +qa
+RUN nvim --headless "+so ~/.config/nvim/lua/chadrc.lua" +qa
 
 CMD ["nvim"]

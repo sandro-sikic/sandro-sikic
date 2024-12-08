@@ -1,6 +1,6 @@
 local M = {}
 
-M.base64 = {
+M.base46 = {
   theme = "catppuccin",
 }
 

@@ -23,7 +23,7 @@ npx npm-check -u
 To run NeoVim from Docker, use the following command:
 
 ```bash
-docker docker run -v .:/host -w /host -it --rm ghcr.io/sandro-sikic/neovim
+docker run -v .:/host -w /host -it --rm ghcr.io/sandro-sikic/neovim
 ```
 
 ### 🎨 PlantUML Theme

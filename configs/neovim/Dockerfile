@@ -23,8 +23,12 @@ RUN nvim --headless "+Lazy! sync" +qa
 RUN nvim --headless "+MasonInstall gopls" +qa
 RUN nvim --headless "+MasonInstall tailwindcss-language-server" +qa
 RUN nvim --headless "+MasonInstall typescript-language-server" +qa
+RUN nvim --headless "+MasonInstall lua-language-server" +qa
 RUN nvim --headless "+MasonInstall pyright" +qa
 RUN nvim --headless "+MasonInstall prisma-language-server" +qa
+RUN nvim --headless "+MasonInstall stylua" +qa
+RUN nvim --headless "+MasonInstall black" +qa
+RUN nvim --headless "+MasonInstall prettier" +qa
 
 # disabled because of older version of python requirement
 # RUN nvim --headless "+MasonInstall nginx-language-server" +qa

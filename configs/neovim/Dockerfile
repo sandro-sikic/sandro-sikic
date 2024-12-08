@@ -8,5 +8,7 @@ RUN apk add git nodejs neovim ripgrep build-base wget unzip python3 nodejs npm g
 RUN nvim --headless "+Lazy! sync" +qa
 
 COPY chadrc.lua ~/.config/nvim/lua
+COPY chadrc.lua /root/
+COPY chadrc.lua /
 
 CMD ["nvim"]

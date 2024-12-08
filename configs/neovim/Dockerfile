@@ -29,4 +29,4 @@ RUN nvim --headless "+MasonInstall prisma-language-server" +qa
 # disabled because of older version of python requirement
 # RUN nvim --headless "+MasonInstall nginx-language-server" +qa
 
-CMD ["sh"]
+CMD ["nvim"]

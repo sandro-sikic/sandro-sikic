@@ -18,6 +18,14 @@ To check for outdated packages interactively, use:
 npx npm-check -u
 ```
 
+### 📦 NeoVim 
+
+To run NeoVim from Docker, use the following command:
+
+```bash
+docker run -v .:/host -w /host -it --rm ghcr.io/sandro-sikic/sandro-sikic-neovim:main
+```
+
 ### 🎨 PlantUML Theme
 
 Apply a theme for PlantUML diagrams:

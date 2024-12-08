@@ -10,7 +10,7 @@ env:
   IMAGE_TAG: main
   REPOSITORY: ${{ github.repository }}
   REGISTRY_USERNAME: ${{ github.actor }} # Github username
-  REGISTRY_PASSWORD: ${{ secrets.GHCR }} # Personal access token
+  REGISTRY_PASSWORD: ${{ secrets.TOKEN }} # Personal access token
 
 jobs:
   neovim: # Job name for building image

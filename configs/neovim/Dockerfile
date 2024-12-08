@@ -13,7 +13,6 @@ RUN rm -rf ~/.config/nvim/.git
 
 COPY chadrc.lua .config/nvim/lua
 COPY configs/conform.lua .config/nvim/lua/configs
-COPY configs/lint.lua .config/nvim/lua/configs
 COPY configs/treesitter.lua .config/nvim/lua/configs
 COPY plugins.lua .config/nvim/lua/plugins/init.lua
 COPY mappings.lua .config/nvim/lua

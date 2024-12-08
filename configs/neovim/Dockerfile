@@ -12,6 +12,4 @@ COPY mappings.lua .config/nvim/lua
 
 RUN nvim --headless "+Lazy! sync" +qa
 
-RUN nvim --headless "+so ~/.config/nvim/lua/chadrc.lua" +qa
-
 CMD ["nvim"]

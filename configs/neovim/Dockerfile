@@ -9,6 +9,6 @@ RUN nvim --headless "+Lazy! sync" +qa
 
 RUN rm -rf ~/.config/nvim/lua/chadrc.lua
 
-COPY chadrc.lua ~/.config/nvim/lua/chadrc.lua
+COPY ./chadrc.lua ~/.config/nvim/lua/chadrc.lua
 
 CMD ["nvim"]

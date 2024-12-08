@@ -11,9 +11,16 @@ RUN apk add git neovim ripgrep build-base wget unzip neovim-doc --update && \
 
 RUN rm -rf ~/.config/nvim/.git
 
+COPY conform.lua .config/nvim/lua/configs
+COPY mason-conform.lua .config/nvim/lua/configs
+COPY mason-lspconfig.lua .config/nvim/lua/configs
+COPY lspconfig.lua .config/nvim/lua/configs
+COPY plugins.lua .config/nvim/lua/plugins/init.lua
 COPY chadrc.lua .config/nvim/lua
 COPY mappings.lua .config/nvim/lua
 
 RUN nvim --headless "+Lazy! sync" +qa
+RUN nvim --headless "+MasonInstallAll" +qa
+
 
 CMD ["nvim"]

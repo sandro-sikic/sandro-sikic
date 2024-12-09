@@ -110,6 +110,16 @@ local options = {
 		virt_text = "󱓻 ",
 		highlight = { hex = true, lspvars = true },
 	},
+
+	options = {
+		user = function()
+			vim.opt.number = true
+			vim.opt.numberwidth = 2
+			vim.opt.ruler = false
+			vim.opt.relativenumber = true
+			vim.opt.modifiable = true
+		end,
+	},
 }
 
 local status, chadrc = pcall(require, "chadrc")

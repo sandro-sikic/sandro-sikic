@@ -4,6 +4,7 @@ local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jj", "<ESC>", { desc = "CMD enter normal mode" })
+map("n", "gd", "<cmd> Telescope<cr>")
 
 local ooo = function(client, bufnr)
 	nvlsp.on_attach(client, bufnr)

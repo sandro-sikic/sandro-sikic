@@ -33,6 +33,6 @@ jobs:
         run: |
           docker buildx build ${{ env.BUILD_LOCATION }} \
             --tag ${{ env.REGISTRY }}/${{ env.REPOSITORY }}-${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} \
-            --cache-from type=registry,ref=${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}-${{ env.IMAGE_NAME }}-cache \
-            --cache-to type=registry,ref=${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}-${{ env.IMAGE_NAME }}-cache,mode=max \
+            --cache-from type=registry,ref=${{ env.REGISTRY }}/${{ env.REPOSITORY }}-${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}-cache \
+            --cache-to type=registry,ref=${{ env.REGISTRY }}/${{ env.REPOSITORY }}-${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}-cache,mode=max \
             --push

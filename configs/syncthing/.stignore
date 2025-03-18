@@ -1,0 +1,5 @@
+(?d)@eaDir
+(?d)node_modules
+(?d)*:Zone.Identifier
+(?d)vendor
+(?d)venv

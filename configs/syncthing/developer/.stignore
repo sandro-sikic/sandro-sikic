@@ -3,3 +3,4 @@
 (?d)*:Zone.Identifier
 (?d)vendor
 (?d)venv
+(?d).next

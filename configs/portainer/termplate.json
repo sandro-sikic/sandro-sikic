@@ -10,7 +10,7 @@
 			"platform": "linux",
 			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
 			"repository": {
-				"url": "https://github.com/sandro-sikic/configs",
+				"url": "https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs",
 				"stackfile": "portainer/stacks/wordpress/docker-stack.yml"
 			},
 			"env": [
@@ -30,7 +30,7 @@
 			"platform": "linux",
 			"logo": "https://d1q6f0aelx0por.cloudfront.net/product-logos/library-nginx-logo.png",
 			"repository": {
-				"url": "https://github.com/sandro-sikic/configs",
+				"url": "https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs",
 				"stackfile": "portainer/stacks/static_host/docker-stack.yml"
 			},
 			"env": [

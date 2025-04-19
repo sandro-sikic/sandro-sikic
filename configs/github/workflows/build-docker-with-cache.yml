@@ -14,11 +14,11 @@ env:
   REGISTRY_PASSWORD: ${{ secrets.GHCR }} # Personal access token
 
 jobs:
-  build_nginx: # Job name for building nginx image
+  build: # Job name for building image
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: nginx # Name of the image
-      BUILD_LOCATION: server/nginx # Path to Dockerfile in the repository
+      IMAGE_NAME: nginx # Name of the service in the docker-compose file
+      BUILD_LOCATION: server/nginx # Path to Dockerfile directory in the repository
 
     steps:
       - name: Checkout repository

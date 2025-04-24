@@ -101,6 +101,7 @@ https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/portain
    In the "Import from URL" section, paste the following urls for the matching program.
    
     [IMDb](https://github.com/sandro-sikic/sandro-sikic/raw/main/configs/violentMonkey/imdb/index.user.js)
+    [Youtube](https://github.com/sandro-sikic/sandro-sikic/raw/main/configs/violentMonkey/youtube/index.user.js)
 
 3. **Install the Script**  
    Click **Install** to add it to Tampermonkey.

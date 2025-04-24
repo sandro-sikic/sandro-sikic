@@ -6,6 +6,9 @@
 
 I’m a software engineer with a passion for building efficient, scalable applications. With years of experience in the field, I’m always excited to expand my knowledge, improve my skills, and share my projects with others.
 
+
+[Configs](/configs/readme.md)
+
 <br clear="both">
 
 ## 🛠️ Tech Stack
@@ -159,6 +162,9 @@ I’m committed to continuous growth in the tech world. Here’s what I’m curr
 
 
 <br clear="both">
+
+
+
 
 ## 👨‍💻 About Me
 

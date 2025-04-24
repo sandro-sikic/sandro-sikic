@@ -90,7 +90,36 @@ To use a custom template, point to the following `template.json` URL in Portaine
 https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/portainer/template.json
 ```
 
----
+### 🛡️ Tampermonkey
+
+#### Installation Instructions
+
+1. **Install Tampermonkey Extension**  
+   Download and install the Tampermonkey extension for your browser. You can find it in your browser's extension store or on the [official Tampermonkey website](https://www.tampermonkey.net/).
+
+2. **Enable Developer Mode**  
+   Open browser extension settings and enable "Developer Mode" for Tampermonkey.
+
+3. **Open Tampermonkey Dashboard**  
+   Click on the Tampermonkey icon in your browser extension toolbar and select **Dashboard** from the dropdown menu.
+
+4. **Navigate to Utilities**  
+   In the Tampermonkey Dashboard, go to the **Utilities** tab.
+
+5. **Import Script from URL**  
+   In the "Import from URL" section, paste the following urls for the matching program.
+   
+    - **IMDb**  
+   ```
+    https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/configs/tampermonkey/imdb/index.js
+   ```
+
+6. **Install the Script**  
+   Click the **Import** button, review the script, and click **Install** to add it to Tampermonkey.
+
+7. **Enjoy the Script**  
+   The script is now installed and will run automatically on supported pages.
+
 
 # 🖥️ Text-Based User Interfaces
 

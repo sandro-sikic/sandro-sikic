@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         IMDb
-// @version      1.0.0
+// @version      1.1.0
 // @description  Play movies directly from IMDb
 // @match        https://www.imdb.com/title/tt*
 // @icon         https://m.media-amazon.com/images/G/01/imdb/images-ANDW73HA/favicon_desktop_32x32._CB1582158068_.png

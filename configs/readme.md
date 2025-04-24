@@ -100,26 +100,16 @@ https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/portain
 2. **Enable Developer Mode**  
    Open browser extension settings and enable "Developer Mode" for Tampermonkey.
 
-3. **Open Tampermonkey Dashboard**  
-   Click on the Tampermonkey icon in your browser extension toolbar and select **Dashboard** from the dropdown menu.
-
-4. **Navigate to Utilities**  
-   In the Tampermonkey Dashboard, go to the **Utilities** tab.
-
-5. **Import Script from URL**  
+3. **Click on a script to install**  
    In the "Import from URL" section, paste the following urls for the matching program.
    
-    - **IMDb**  
-   ```
-    https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/refs/heads/main/configs/tampermonkey/imdb/index.js
-   ```
+    [IMDb](https://github.com/sandro-sikic/sandro-sikic/raw/main/configs/tampermonkey/imdb/index.user.js)
 
 6. **Install the Script**  
-   Click the **Import** button, review the script, and click **Install** to add it to Tampermonkey.
+   Click **Install** to add it to Tampermonkey.
 
 7. **Enjoy the Script**  
    The script is now installed and will run automatically on supported pages.
-
 
 # 🖥️ Text-Based User Interfaces
 

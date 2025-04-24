@@ -1,23 +1,21 @@
 // ==UserScript==
 // @name        Redirect to tsyoutube by clicking on the video title
-// @version     1.1.0
-// @match       https://www.youtube.com/watch*
+// @version     1.2.0
+// @match       https://www.youtube.com/*
 // @grant       none
 // @icon        https://www.gstatic.com/youtube/img/branding/favicon/favicon_144x144_v2.png
 // @downloadURL https://github.com/sandro-sikic/sandro-sikic/raw/main/configs/violentMonkey/youtube/index.user.js
 // ==/UserScript==
 
 function main() {
-	const id = 'tsyoutube';
 	const observer = new MutationObserver(() => {
-		if (document.getElementById('tsyoutube')) return;
-
-		const title = document.getElementById('title')?.querySelector('h1');
+		if (window.location.pathname != '/watch') return;
+		const title = document.getElementById('title');
+		console.log('something changed', title, window.location);
 		if (!title) return;
 		if (title.hasAttribute('data-listeners-added')) return;
 
 		title.style.cursor = 'pointer';
-		title.id = 'tsyoutube';
 
 		title.addEventListener('click', (e) => {
 			window.location =

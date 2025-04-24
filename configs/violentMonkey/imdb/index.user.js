@@ -4,6 +4,7 @@
 // @description  Play movies directly from IMDb
 // @match        https://www.imdb.com/title/tt*
 // @icon         https://m.media-amazon.com/images/G/01/imdb/images-ANDW73HA/favicon_desktop_32x32._CB1582158068_.png
+// @downloadURL  https://github.com/sandro-sikic/sandro-sikic/raw/main/configs/violentMonkey/imdb/index.user.js
 // @grant        none
 // ==/UserScript==
 

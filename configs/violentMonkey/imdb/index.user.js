@@ -106,5 +106,5 @@ function main() {
 try {
 	main();
 } catch (error) {
-	console.log('IMDB player: ', error);
+	console.log('IMDb player: ', error);
 }

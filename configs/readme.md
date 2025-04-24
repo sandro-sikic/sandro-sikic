@@ -90,25 +90,22 @@ To use a custom template, point to the following `template.json` URL in Portaine
 https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/portainer/template.json
 ```
 
-### 🛡️ Tampermonkey
+### 🛡️ ViolentMonkey
 
 #### Installation Instructions
 
-1. **Install Tampermonkey Extension**  
-   Download and install the Tampermonkey extension for your browser. You can find it in your browser's extension store or on the [official Tampermonkey website](https://www.tampermonkey.net/).
+1. **Install ViolentMonkey Extension**  
+   Download and install the ViolentMonkey extension for your browser. You can find it in your browser's extension store or on the [official ViolentMonkey website](https://violentmonkey.github.io/get-it/).
 
-2. **Enable Developer Mode**  
-   Open browser extension settings and enable "Developer Mode" for Tampermonkey.
-
-3. **Click on a script to install**  
+2. **Click on a script to install**  
    In the "Import from URL" section, paste the following urls for the matching program.
    
-    [IMDb](https://github.com/sandro-sikic/sandro-sikic/raw/main/configs/tampermonkey/imdb/index.user.js)
+    [IMDb](https://github.com/sandro-sikic/sandro-sikic/raw/main/configs/violentMonkey/imdb/index.user.js)
 
-6. **Install the Script**  
+3. **Install the Script**  
    Click **Install** to add it to Tampermonkey.
 
-7. **Enjoy the Script**  
+4. **Enjoy the Script**  
    The script is now installed and will run automatically on supported pages.
 
 # 🖥️ Text-Based User Interfaces

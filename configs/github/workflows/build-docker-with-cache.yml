@@ -1,5 +1,4 @@
-# Example trigger for nginx image build and push to registry
-name: Build docker container and push to registry with cache
+name: Build_docker_container_and_push_to_registry_with_cache # Example trigger for nginx image build and push to registry
 
 on:
   push:
@@ -8,17 +7,16 @@ on:
 
 env:
   REGISTRY: ghcr.io # Github Container Registry
-  IMAGE_TAG: master
-  REPOSITORY: ${{ github.repository }}
+  REPOSITORY: ${{ github.repository }} # Repository name
   REGISTRY_USERNAME: ${{ github.actor }} # Github username
   REGISTRY_PASSWORD: ${{ secrets.GHCR }} # Personal access token
 
+  SERVICE_NAME: nginx # Name of the service in the docker-compose file
+  DOCKERFILE_LOCATION: server/nginx # Path to Dockerfile directory in the repository
+
 jobs:
-  build: # Job name for building image
+  build:
     runs-on: ubuntu-latest
-    env:
-      IMAGE_NAME: nginx # Name of the service in the docker-compose file
-      BUILD_LOCATION: server/nginx # Path to Dockerfile directory in the repository
 
     steps:
       - name: Checkout repository
@@ -32,8 +30,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker buildx build ${{ env.BUILD_LOCATION }} \
-            --tag ${{ env.REGISTRY }}/${{ env.REPOSITORY }}-${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} \
-            --cache-from type=registry,ref=${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}-${{ env.IMAGE_NAME }}-cache \
-            --cache-to type=registry,ref=${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}-${{ env.IMAGE_NAME }}-cache,mode=max \
+          docker buildx build ${{ env.DOCKERFILE_LOCATION }} \
+            --tag ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.SERVICE_NAME }} \
+            --cache-from type=registry,ref=${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.SERVICE_NAME }}-cache \
+            --cache-to type=registry,ref=${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.SERVICE_NAME }}-cache,mode=max \
             --push

@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Redirect to tsyoutube by clicking on the video title
-// @version     1.2.0
+// @version     1.3.0
 // @match       https://www.youtube.com/*
 // @grant       none
 // @icon        https://www.gstatic.com/youtube/img/branding/favicon/favicon_144x144_v2.png
@@ -10,7 +10,7 @@
 function main() {
 	const observer = new MutationObserver(() => {
 		if (window.location.pathname != '/watch') return;
-		const title = document.getElementById('title');
+		const title = document.querySelector('ytd-watch-metadata #title');
 		console.log('something changed', title, window.location);
 		if (!title) return;
 		if (title.hasAttribute('data-listeners-added')) return;

@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         IMDb
-// @version      1.1.0
+// @version      1.3.0
 // @description  Play movies directly from IMDb
 // @match        https://www.imdb.com/title/tt*
 // @icon         https://m.media-amazon.com/images/G/01/imdb/images-ANDW73HA/favicon_desktop_32x32._CB1582158068_.png
@@ -23,7 +23,7 @@ function createLightbox(iframeSrc) {
 		justifyContent: 'center',
 		alignItems: 'center',
 		zIndex: '9999',
-		backdropFilter: 'blur(10px)',
+		backdropFilter: 'blur(15px)',
 	});
 
 	// Create iframe
@@ -33,6 +33,7 @@ function createLightbox(iframeSrc) {
 		height: '90%',
 		border: 'none',
 		borderRadius: '8px',
+		boxShadow: '0 0 10px rgba(0, 0, 0, 0.5)',
 	});
 	iframe.allowFullscreen = true;
 	iframe.src = iframeSrc;
@@ -58,18 +59,56 @@ function createLightbox(iframeSrc) {
 	document.body.appendChild(lightbox);
 }
 
-function playVideo(e) {
-	const pathSegments = window.location.pathname
-		.split('/')
-		.filter((segment) => segment);
-	const imdb_id = pathSegments[1];
-	const media_type = JSON.parse(
-		document.querySelector('script[type="application/ld+json"]').textContent
-	)['@type'];
+function extractIdFromUrl(url) {
+	const match = url.match(/\/title\/(tt\d+)/);
+	return match ? match[1] : null;
+}
+
+function generateVideoUrl() {
 	let base_url = 'https://proxy.garageband.rocks/embed';
-	let video_url = base_url + '/tv/' + imdb_id;
-	if (media_type === 'Movie') {
-		video_url = base_url + '/movie/' + imdb_id;
+
+	const data = JSON.parse(
+		document.querySelector('script[type="application/ld+json"]').textContent
+	);
+
+	const type = data['@type'];
+	const url = data.url;
+
+	if (type === 'Movie') {
+		return base_url + '/movie/' + extractIdFromUrl(url);
+	} else if (type === 'TVSeries') {
+		return base_url + '/tv/' + extractIdFromUrl(url);
+	} else if (type === 'TVEpisode') {
+		const series_url = document
+			.querySelector('a[data-testid="hero-title-block__series-link"]')
+			.getAttribute('href');
+
+		const season_episode = document
+			.querySelector(
+				'div[data-testid="hero-subnav-bar-season-episode-numbers-section"]'
+			)
+			.textContent.replace('<!-- -->', '');
+
+		season = season_episode.split('.')[0].replace('S', '');
+		episode = season_episode.split('.')[1].replace('E', '');
+
+		return (
+			base_url +
+			'/tv/' +
+			extractIdFromUrl(series_url) +
+			'?season=' +
+			season +
+			'&episode=' +
+			episode
+		);
+	}
+}
+
+function playVideo(e) {
+	const video_url = generateVideoUrl();
+
+	if (!video_url) {
+		return;
 	}
 
 	if (e.ctrlKey || e.metaKey) {
@@ -79,26 +118,53 @@ function playVideo(e) {
 	}
 }
 
+function resetTitleStyle(title) {
+	title.style.cursor = 'default';
+	title.title = '';
+	title.removeEventListener('click', playVideo);
+	title.removeEventListener('mouseover', () => {
+		title.style.textDecoration = 'none';
+	});
+	title.addEventListener('mouseout', () => {});
+}
+
+function setTitleStyle(title) {
+	title.style.cursor = 'pointer';
+	title.title =
+		'Click to play in an overlay, ctrl+click (cmd+click on Mac) to open in a new tab.';
+	title.addEventListener('click', playVideo);
+
+	title.addEventListener('mouseover', () => {
+		title.style.textDecoration = 'underline';
+	});
+
+	title.addEventListener('mouseout', () => {
+		title.style.textDecoration = 'none';
+	});
+}
+
 function main() {
 	'use strict';
 
 	const observer = new MutationObserver(() => {
-		const pageTitle = document.querySelector('h1');
-		if (pageTitle && !pageTitle.classList.contains('clickable-title')) {
-			pageTitle.classList.add('clickable-title');
-			pageTitle.style.cursor = 'pointer';
-			pageTitle.title =
-				'Click to play in an overlay, ctrl+click (cmd+click on Mac) to open in a new tab.';
-			pageTitle.addEventListener('click', playVideo);
+		const title = document.querySelector('h1');
 
-			// Add underline on hover
-			pageTitle.addEventListener('mouseover', () => {
-				pageTitle.style.textDecoration = 'underline';
-			});
-			pageTitle.addEventListener('mouseout', () => {
-				pageTitle.style.textDecoration = 'none';
-			});
+		if (!title) {
+			return;
 		}
+
+		const allowedTypes = ['Movie', 'TVSeries', 'TVEpisode'];
+
+		const media_type = JSON.parse(
+			document.querySelector('script[type="application/ld+json"]').textContent
+		)['@type'];
+
+		if (!allowedTypes.includes(media_type)) {
+			resetTitleStyle(title);
+			return;
+		}
+
+		setTitleStyle(title);
 	});
 
 	observer.observe(document.body, { childList: true, subtree: true });

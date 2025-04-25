@@ -11,7 +11,6 @@ function main() {
 	const observer = new MutationObserver(() => {
 		if (window.location.pathname != '/watch') return;
 		const title = document.querySelector('ytd-watch-metadata #title');
-		console.log('something changed', title, window.location);
 		if (!title) return;
 		if (title.hasAttribute('data-listeners-added')) return;
 

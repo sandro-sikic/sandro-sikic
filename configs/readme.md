@@ -114,10 +114,10 @@ https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/portain
 2. **Click on a script to install**  
    In the "Import from URL" section, paste the following urls for the matching program.
 
-   | Script                                                                                                              | Description                      |
-   | ------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
-   | [IMDb Script](https://github.com/sandro-sikic/sandro-sikic/raw/main/configs/violentMonkey/imdb/index.user.js)       | Watch movies and series on IMDb. |
-   | [Youtube Script](https://github.com/sandro-sikic/sandro-sikic/raw/main/configs/violentMonkey/youtube/index.user.js) | Links from Youtube to TSYoutube. |
+   | Script                                                                                                       | Description                      |
+   | ------------------------------------------------------------------------------------------------------------ | -------------------------------- |
+   | [IMDb](https://github.com/sandro-sikic/sandro-sikic/raw/main/configs/violentMonkey/imdb/index.user.js)       | Watch movies and series on IMDb. |
+   | [Youtube](https://github.com/sandro-sikic/sandro-sikic/raw/main/configs/violentMonkey/youtube/index.user.js) | Links from Youtube to TSYoutube. |
 
 3. **Install the Script**  
    Click **Install** to add it to Tampermonkey.

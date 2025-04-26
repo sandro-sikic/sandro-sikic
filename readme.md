@@ -1,13 +1,24 @@
 <img width="100%" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/banner.png" style="border-radius: 10px" />
 
-
-
 ## 🚀 Software Engineer | Full-Stack Developer | Tech Enthusiast
 
 I’m a software engineer with a passion for building efficient, scalable applications. With years of experience in the field, I’m always excited to expand my knowledge, improve my skills, and share my projects with others.
 
 
-[Configs](/configs/readme.md)
+## 📚 Contents
+- [🛠️ Tech Stack](#️-tech-stack)
+- [<img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/code.webp" width ="20">Skills](#-skills)
+- [⚙ My Configs](/configs/readme.md)
+- [📂 My Projects](#-my-projects)
+  - [📌 Featured Projects](#-featured-projects)
+  - [📚 Other Sites](#-other-sites)
+- [🌱 What I'm Learning](#-what-im-learning)
+- [👨‍💻 About Me](#-about-me)
+- [🎨 Design Tools](#-design-tools)
+- [📫 Get in Touch](#-get-in-touch)
+
+
+---
 
 <br clear="both">
 

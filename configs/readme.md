@@ -1,6 +1,20 @@
-# ⚙️ Configurations
+## 📚 Contents
+- [📜 Commands](#-commands)
+    - [🐳 Docker TUI](#-docker-tui)
+    - [📦 NPM Update](#-npm-update)
+    - [📦 NeoVim](#-neovim)
+    - [🎨 PlantUML Theme](#-plantuml-theme)
+- [🚀 Installation](#-installation)
+    - [🖥️ WezTerm](#️-wezterm)
+    - [🛠️ VSCode](#️-vscode)
+    - [✍️ NeoVim](#️-neovim)
+    - [📂 Portainer](#-portainer)
+    - [🛡️ ViolentMonkey](#️-violentmonkey)
+- [🖥️ Text-Based User Interfaces](#️-text-based-user-interfaces)
 
-## 📜 Commands
+---
+
+# 📜 Commands
 
 ### 🐳 Docker TUI
 
@@ -92,7 +106,7 @@ https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/portain
 
 ### 🛡️ ViolentMonkey
 
-#### Installation Instructions
+#### 📝 Installation Instructions
 
 1. **Install ViolentMonkey Extension**  
    Download and install the ViolentMonkey extension for your browser. You can find it in your browser's extension store or on the [official ViolentMonkey website](https://violentmonkey.github.io/get-it/).

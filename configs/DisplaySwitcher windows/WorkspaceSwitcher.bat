@@ -24,7 +24,7 @@ if "%mode%"=="0x2" (
     reg add "%regKey%" /v %regValue% /t REG_DWORD /d 2 /f >nul
 
     start "" "ClickMonitorDDC_7_2.exe" d 2 s DISPLAYPORT1
-    timeout /t 20 /nobreak >nul
+    timeout /t 30 /nobreak >nul
     taskkill /im ClickMonitorDDC_7_2.exe /f
 )
 

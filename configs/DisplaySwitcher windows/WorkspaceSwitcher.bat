@@ -10,7 +10,7 @@ for /f "tokens=3" %%a in ('reg query "%regKey%" /v %regValue% 2^>nul') do set mo
 
 :: Toggle between Extend (2) and Second screen only (4)
 if "%mode%"=="0x2" (
-    start "" "ClickMonitorDDC_7_2.exe" d 2 s HDMI1
+    @REM start "" "ClickMonitorDDC_7_2.exe" d 2 s HDMI1
 
     echo Switching to Second Screen Only...
     DisplaySwitch.exe /external

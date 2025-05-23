@@ -5,6 +5,10 @@ on:
     branches:
       - master
 
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   REGISTRY: ghcr.io # Github Container Registry
   REPOSITORY: ${{ github.repository }} # Repository name

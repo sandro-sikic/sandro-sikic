@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         IMDb
-// @version      1.3.0
+// @version      1.4.0
 // @description  Play movies directly from IMDb
 // @match        https://www.imdb.com/title/tt*
 // @icon         https://m.media-amazon.com/images/G/01/imdb/images-ANDW73HA/favicon_desktop_32x32._CB1582158068_.png
@@ -143,14 +143,77 @@ function setTitleStyle(title) {
 	});
 }
 
+function generateDebridMediaManagerUrl() {
+	let base_url = 'https://debridmediamanager.com';
+
+	const data = JSON.parse(
+		document.querySelector('script[type="application/ld+json"]').textContent
+	);
+
+	const type = data['@type'];
+	const url = data.url;
+
+	if (type === 'Movie') {
+		return `${base_url}/movie/${extractIdFromUrl(url)}`;
+	} else if (type === 'TVSeries') {
+		return `${base_url}/show/${extractIdFromUrl(url)}`;
+	} else if (type === 'TVEpisode') {
+		const series_url = document
+			.querySelector('a[data-testid="hero-title-block__series-link"]')
+			.getAttribute('href');
+
+		const season_episode = document
+			.querySelector(
+				'div[data-testid="hero-subnav-bar-season-episode-numbers-section"]'
+			)
+			.textContent.replace('<!-- -->', '');
+
+		season = season_episode.split('.')[0].replace('S', '');
+		episode = season_episode.split('.')[1].replace('E', '');
+
+		return `${base_url}/show/${extractIdFromUrl(series_url)}/${season}`;
+	}
+}
+
+function addRealDebridLink(inlineList) {
+	if (document.getElementById('rd-imdb-link')) {
+		return;
+	}
+
+	const rdLink = document.createElement('a');
+	rdLink.id = 'rd-imdb-link';
+	rdLink.textContent = 'Debrid Media Manager';
+	rdLink.className = 'ipc-link ipc-link--baseAlt ipc-link--inherit-color';
+	rdLink.addEventListener('click', (e) => {
+		e.stopPropagation();
+
+		if (e.ctrlKey || e.metaKey) {
+			window.open(generateDebridMediaManagerUrl());
+		} else {
+			createLightbox(generateDebridMediaManagerUrl());
+		}
+	});
+
+	const listItem = document.createElement('li');
+	listItem.className = 'ipc-inline-list__item';
+	listItem.appendChild(rdLink);
+
+	inlineList.appendChild(listItem);
+}
+
 function main() {
 	'use strict';
 
 	const observer = new MutationObserver(() => {
 		const title = document.querySelector('h1');
+		const inlineList = title.parentNode.querySelector('ul.ipc-inline-list');
 
 		if (!title) {
 			return;
+		}
+
+		if (!!inlineList) {
+			addRealDebridLink(inlineList);
 		}
 
 		const allowedTypes = ['Movie', 'TVSeries', 'TVEpisode'];

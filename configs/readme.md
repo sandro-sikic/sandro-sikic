@@ -7,9 +7,14 @@
 - [🚀 Installation](#-installation)
     - [🖥️ WezTerm](#️-wezterm)
     - [🛠️ VSCode](#️-vscode)
+      - [🌄 Background Images](#-background-images)
     - [✍️ NeoVim](#️-neovim)
     - [📂 Portainer](#-portainer)
     - [🛡️ ViolentMonkey](#️-violentmonkey)
+      - [📝 Installation Instructions](#-installation-instructions)
+    - [Stremio](#stremio)
+      - [Installation](#installation)
+      - [Plugins](#plugins)
 - [🖥️ Text-Based User Interfaces](#️-text-based-user-interfaces)
 
 ---

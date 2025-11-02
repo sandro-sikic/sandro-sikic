@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Youtube search
+// @name         Fitgirl youtube search
 // @version      1.0.0
 // @description  Open youtube search from the title
 // @match        https://fitgirl-repacks.site/*

@@ -118,6 +118,7 @@ https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/portain
    | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------ |
    | [IMDb](https://github.com/sandro-sikic/sandro-sikic/raw/main/configs/violentMonkey/imdb/index.user.js)       | Watch movies and series on IMDb.                 |
    | [Youtube](https://github.com/sandro-sikic/sandro-sikic/raw/main/configs/violentMonkey/youtube/index.user.js) | Links from Youtube to TSYoutube.                 |
+   | [Fitgirl](https://github.com/sandro-sikic/sandro-sikic/raw/main/configs/violentMonkey/fitgirl/index.user.js) | Links from Youtube to TSYoutube.                 |
    | [Stremlist](https://stremlist.com)                                                                           | Bring your IMDb watchlist directly into Stremio. |
 
 3. **Install the Script**  

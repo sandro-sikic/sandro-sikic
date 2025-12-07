@@ -2,7 +2,7 @@
 // @name         IMDb
 // @version      1.5.0
 // @description  IMDb Improvements
-// @match        https://www.imdb.com/title/tt*
+// @match        https://www.imdb.com/*
 // @icon         https://m.media-amazon.com/images/G/01/imdb/images-ANDW73HA/favicon_desktop_32x32._CB1582158068_.png
 // @downloadURL  https://github.com/sandro-sikic/sandro-sikic/raw/main/configs/violentMonkey/imdb/index.user.js
 // @grant        none
@@ -135,31 +135,28 @@ function isMediaPage() {
 	return allowedTypes.includes(imdb.type);
 }
 
-function addRealDebridLink() {
+function addWatchNowLink() {
 	if (!isMediaPage()) return;
 
-	let baseUrl = 'https://debridmediamanager.com';
-
+	let baseUrl = 'https://proxy.garageband.rocks/embed';
 	const imdb = getIMDbData();
-	if (!imdb.id) return;
-
-	let debridUrl = null;
+	let videoUrl = null;
 
 	if (imdb.type === 'Movie') {
-		debridUrl = `${baseUrl}/movie/${imdb.id}`;
+		videoUrl = `${baseUrl}/movie/${imdb.id}`;
 	} else if (imdb.type === 'TVSeries') {
-		debridUrl = `${baseUrl}/show/${imdb.id}`;
+		videoUrl = `${baseUrl}/tv/${imdb.id}`;
 	} else if (imdb.type === 'TVEpisode') {
-		debridUrl = `${baseUrl}/show/${imdb.seriesId}/${imdb.season}`;
+		videoUrl = `${baseUrl}/tv/${imdb.seriesId}?season=${imdb.season}&episode=${imdb.episode}`;
 	}
 
-	if (!debridUrl) return;
+	if (!videoUrl) return;
 
-	addLink('Debrid Media Manager', (e) => {
+	addLink('Watch Now', (e) => {
 		if (e.ctrlKey || e.metaKey) {
-			window.open(debridUrl);
+			window.open(videoUrl);
 		} else {
-			createLightbox(debridUrl);
+			createLightbox(videoUrl);
 		}
 	});
 }
@@ -185,28 +182,31 @@ function addOpenInStremioLink() {
 	addLink('Stremio', stremioUrl);
 }
 
-function addWatchNowLink() {
+function addRealDebridLink() {
 	if (!isMediaPage()) return;
 
-	let baseUrl = 'https://proxy.garageband.rocks/embed';
+	let baseUrl = 'https://debridmediamanager.com';
+
 	const imdb = getIMDbData();
-	let videoUrl = null;
+	if (!imdb.id) return;
+
+	let debridUrl = null;
 
 	if (imdb.type === 'Movie') {
-		videoUrl = `${baseUrl}/movie/${imdb.id}`;
+		debridUrl = `${baseUrl}/movie/${imdb.id}`;
 	} else if (imdb.type === 'TVSeries') {
-		videoUrl = `${baseUrl}/tv/${imdb.id}`;
+		debridUrl = `${baseUrl}/show/${imdb.id}`;
 	} else if (imdb.type === 'TVEpisode') {
-		videoUrl = `${baseUrl}/tv/${imdb.seriesId}?season=${imdb.season}&episode=${imdb.episode}`;
+		debridUrl = `${baseUrl}/show/${imdb.seriesId}/${imdb.season}`;
 	}
 
-	if (!videoUrl) return;
+	if (!debridUrl) return;
 
-	addLink('Watch Now', (e) => {
+	addLink('Debrid Media Manager', (e) => {
 		if (e.ctrlKey || e.metaKey) {
-			window.open(videoUrl);
+			window.open(debridUrl);
 		} else {
-			createLightbox(videoUrl);
+			createLightbox(debridUrl);
 		}
 	});
 }

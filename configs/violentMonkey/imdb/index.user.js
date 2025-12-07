@@ -17,12 +17,14 @@ function createLightbox(iframeSrc) {
 		left: '0',
 		width: '100vw',
 		height: '100vh',
-		backgroundColor: 'rgba(0, 0, 0, 0.6)',
+		backgroundColor: 'rgba(0, 0, 0, 0.7)',
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
 		zIndex: '9999',
-		backdropFilter: 'blur(15px)',
+		backdropFilter: 'blur(20px)',
+		opacity: '0',
+		transition: 'opacity 0.5s',
 	});
 
 	const iframe = document.createElement('iframe');
@@ -32,6 +34,10 @@ function createLightbox(iframeSrc) {
 		border: 'none',
 		borderRadius: '8px',
 		boxShadow: '0 0 10px rgba(0, 0, 0, 0.5)',
+		opacity: '0',
+		transition: '1s',
+		transitionDelay: '0.5s',
+		transform: 'scale(0.95)',
 	});
 	iframe.allowFullscreen = true;
 	iframe.src = iframeSrc;
@@ -39,22 +45,41 @@ function createLightbox(iframeSrc) {
 	// Append iframe to lightbox
 	lightbox.appendChild(iframe);
 
+	// Helper to restore scroll
+	const restoreScroll = () => {
+		document.body.style.overflow = '';
+		document.removeEventListener('keyup', escHandler);
+	};
+
 	// Close lightbox when clicking outside iframe
 	lightbox.addEventListener('click', (event) => {
 		if (event.target === lightbox) {
 			lightbox.remove();
+			restoreScroll();
 		}
 	});
 
 	// Close lightbox when ESC is pressed
-	document.addEventListener('keyup', function (event) {
+	const escHandler = function (event) {
 		if (event.key === 'Escape') {
 			lightbox.remove();
+			restoreScroll();
 		}
-	});
+	};
+	document.addEventListener('keyup', escHandler);
 
 	// Add lightbox to the body
 	document.body.appendChild(lightbox);
+
+	// Disable body scroll
+	document.body.style.overflow = 'hidden';
+
+	// Trigger opacity transition
+	requestAnimationFrame(() => {
+		iframe.style.opacity = '1';
+		lightbox.style.opacity = '1';
+		iframe.style.transform = 'scale(1)';
+	});
 }
 
 function addLink(label, action) {

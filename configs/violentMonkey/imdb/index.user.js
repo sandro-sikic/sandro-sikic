@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         IMDb
-// @version      1.5.0
+// @version      1.6.0
 // @description  IMDb Improvements
 // @match        https://www.imdb.com/*
 // @match        https://m.imdb.com/*
@@ -17,7 +17,7 @@ function createLightbox(iframeSrc) {
 		top: '0',
 		left: '0',
 		width: '100vw',
-		height: '100vh',
+		height: '100svh',
 		backgroundColor: 'rgba(0, 0, 0, 0.7)',
 		display: 'flex',
 		justifyContent: 'center',

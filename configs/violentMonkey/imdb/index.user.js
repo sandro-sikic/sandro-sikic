@@ -138,20 +138,22 @@ function isMediaPage() {
 function addRealDebridLink() {
 	if (!isMediaPage()) return;
 
-	let base_url = 'https://debridmediamanager.com';
+	let baseUrl = 'https://debridmediamanager.com';
 
 	const imdb = getIMDbData();
 	if (!imdb.id) return;
 
-	let debridUrl = '#';
+	let debridUrl = null;
 
 	if (imdb.type === 'Movie') {
-		debridUrl = `${base_url}/movie/${imdb.id}`;
+		debridUrl = `${baseUrl}/movie/${imdb.id}`;
 	} else if (imdb.type === 'TVSeries') {
-		debridUrl = `${base_url}/show/${imdb.id}`;
+		debridUrl = `${baseUrl}/show/${imdb.id}`;
 	} else if (imdb.type === 'TVEpisode') {
-		debridUrl = `${base_url}/show/${imdb.seriesId}/${imdb.season}`;
+		debridUrl = `${baseUrl}/show/${imdb.seriesId}/${imdb.season}`;
 	}
+
+	if (!debridUrl) return;
 
 	addLink('Debrid Media Manager', (e) => {
 		if (e.ctrlKey || e.metaKey) {
@@ -168,7 +170,7 @@ function addOpenInStremioLink() {
 	const imdb = getIMDbData();
 	if (!imdb.id) return;
 
-	let stremioUrl = '#';
+	let stremioUrl = null;
 
 	if (imdb.type === 'Movie') {
 		stremioUrl = `stremio:///detail/movie/${imdb.id}`;
@@ -178,27 +180,27 @@ function addOpenInStremioLink() {
 		stremioUrl = `stremio:///detail/series/${imdb.seriesId}/${imdb.seriesId}:${imdb.season}:${imdb.episode}`;
 	}
 
+	if (!stremioUrl) return;
+
 	addLink('Stremio', stremioUrl);
 }
 
 function addWatchNowLink() {
 	if (!isMediaPage()) return;
 
-	let base_url = 'https://proxy.garageband.rocks/embed';
+	let baseUrl = 'https://proxy.garageband.rocks/embed';
 	const imdb = getIMDbData();
-	let videoUrl = '#';
+	let videoUrl = null;
 
 	if (imdb.type === 'Movie') {
-		videoUrl = `${base_url}/movie/${imdb.id}`;
+		videoUrl = `${baseUrl}/movie/${imdb.id}`;
 	} else if (imdb.type === 'TVSeries') {
-		videoUrl = `${base_url}/tv/${imdb.id}`;
+		videoUrl = `${baseUrl}/tv/${imdb.id}`;
 	} else if (imdb.type === 'TVEpisode') {
-		videoUrl = `${base_url}/tv/${imdb.seriesId}?season=${imdb.season}&episode=${imdb.episode}`;
+		videoUrl = `${baseUrl}/tv/${imdb.seriesId}?season=${imdb.season}&episode=${imdb.episode}`;
 	}
 
-	if (!videoUrl) {
-		return;
-	}
+	if (!videoUrl) return;
 
 	addLink('Watch Now', (e) => {
 		if (e.ctrlKey || e.metaKey) {

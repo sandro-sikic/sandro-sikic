@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         IMDb
-// @version      1.4.0
-// @description  Play movies directly from IMDb
+// @version      1.5.0
+// @description  IMDb Improvements
 // @match        https://www.imdb.com/title/tt*
 // @icon         https://m.media-amazon.com/images/G/01/imdb/images-ANDW73HA/favicon_desktop_32x32._CB1582158068_.png
 // @downloadURL  https://github.com/sandro-sikic/sandro-sikic/raw/main/configs/violentMonkey/imdb/index.user.js
@@ -9,7 +9,6 @@
 // ==/UserScript==
 
 function createLightbox(iframeSrc) {
-	// Create lightbox container
 	const lightbox = document.createElement('div');
 
 	Object.assign(lightbox.style, {
@@ -26,7 +25,6 @@ function createLightbox(iframeSrc) {
 		backdropFilter: 'blur(15px)',
 	});
 
-	// Create iframe
 	const iframe = document.createElement('iframe');
 	Object.assign(iframe.style, {
 		width: '90%',
@@ -59,182 +57,166 @@ function createLightbox(iframeSrc) {
 	document.body.appendChild(lightbox);
 }
 
-function extractIdFromUrl(url) {
-	const match = url.match(/\/title\/(tt\d+)/);
-	return match ? match[1] : null;
-}
+function addLink(label, action) {
+	const id = label.toLowerCase().replace(' ', '_');
+	if (document.getElementById(id)) return;
 
-function generateVideoUrl() {
-	let base_url = 'https://proxy.garageband.rocks/embed';
+	const title = document.querySelector('h1');
+	if (!title) return;
 
-	const data = JSON.parse(
-		document.querySelector('script[type="application/ld+json"]').textContent
-	);
+	const inlineList = title.parentNode.querySelector('ul.ipc-inline-list');
+	if (!inlineList) return;
 
-	const type = data['@type'];
-	const url = data.url;
+	const link = document.createElement('a');
+	link.id = id;
+	link.textContent = label;
+	link.className = 'ipc-link ipc-link--baseAlt ipc-link--inherit-color';
 
-	if (type === 'Movie') {
-		return base_url + '/movie/' + extractIdFromUrl(url);
-	} else if (type === 'TVSeries') {
-		return base_url + '/tv/' + extractIdFromUrl(url);
-	} else if (type === 'TVEpisode') {
-		const series_url = document
-			.querySelector('a[data-testid="hero-title-block__series-link"]')
-			.getAttribute('href');
-
-		const season_episode = document
-			.querySelector(
-				'div[data-testid="hero-subnav-bar-season-episode-numbers-section"]'
-			)
-			.textContent.replace('<!-- -->', '');
-
-		season = season_episode.split('.')[0].replace('S', '');
-		episode = season_episode.split('.')[1].replace('E', '');
-
-		return (
-			base_url +
-			'/tv/' +
-			extractIdFromUrl(series_url) +
-			'?season=' +
-			season +
-			'&episode=' +
-			episode
-		);
+	if (typeof action == 'string') {
+		link.href = action;
+		link.target = '_blank';
+	} else if (typeof action == 'function') {
+		link.addEventListener('click', (e) => {
+			e.stopPropagation();
+			action(e);
+		});
 	}
-}
-
-function playVideo(e) {
-	const video_url = generateVideoUrl();
-
-	if (!video_url) {
-		return;
-	}
-
-	if (e.ctrlKey || e.metaKey) {
-		window.open(video_url);
-	} else {
-		createLightbox(video_url);
-	}
-}
-
-function resetTitleStyle(title) {
-	title.style.cursor = 'default';
-	title.title = '';
-	title.removeEventListener('click', playVideo);
-	title.removeEventListener('mouseover', () => {
-		title.style.textDecoration = 'none';
-	});
-	title.addEventListener('mouseout', () => {});
-}
-
-function setTitleStyle(title) {
-	title.style.cursor = 'pointer';
-	title.title =
-		'Click to play in an overlay, ctrl+click (cmd+click on Mac) to open in a new tab.';
-	title.addEventListener('click', playVideo);
-
-	title.addEventListener('mouseover', () => {
-		title.style.textDecoration = 'underline';
-	});
-
-	title.addEventListener('mouseout', () => {
-		title.style.textDecoration = 'none';
-	});
-}
-
-function generateDebridMediaManagerUrl() {
-	let base_url = 'https://debridmediamanager.com';
-
-	const data = JSON.parse(
-		document.querySelector('script[type="application/ld+json"]').textContent
-	);
-
-	const type = data['@type'];
-	const url = data.url;
-
-	if (type === 'Movie') {
-		return `${base_url}/movie/${extractIdFromUrl(url)}`;
-	} else if (type === 'TVSeries') {
-		return `${base_url}/show/${extractIdFromUrl(url)}`;
-	} else if (type === 'TVEpisode') {
-		const series_url = document
-			.querySelector('a[data-testid="hero-title-block__series-link"]')
-			.getAttribute('href');
-
-		const season_episode = document
-			.querySelector(
-				'div[data-testid="hero-subnav-bar-season-episode-numbers-section"]'
-			)
-			.textContent.replace('<!-- -->', '');
-
-		season = season_episode.split('.')[0].replace('S', '');
-		episode = season_episode.split('.')[1].replace('E', '');
-
-		return `${base_url}/show/${extractIdFromUrl(series_url)}/${season}`;
-	}
-}
-
-function addRealDebridLink(inlineList) {
-	if (document.getElementById('rd-imdb-link')) {
-		return;
-	}
-
-	const rdLink = document.createElement('a');
-	rdLink.id = 'rd-imdb-link';
-	rdLink.textContent = 'Debrid Media Manager';
-	rdLink.className = 'ipc-link ipc-link--baseAlt ipc-link--inherit-color';
-	rdLink.addEventListener('click', (e) => {
-		e.stopPropagation();
-
-		if (e.ctrlKey || e.metaKey) {
-			window.open(generateDebridMediaManagerUrl());
-		} else {
-			createLightbox(generateDebridMediaManagerUrl());
-		}
-	});
 
 	const listItem = document.createElement('li');
 	listItem.className = 'ipc-inline-list__item';
-	listItem.appendChild(rdLink);
+	listItem.appendChild(link);
 
 	inlineList.appendChild(listItem);
 }
 
-function main() {
-	'use strict';
+function getIMDbData() {
+	const data = JSON.parse(
+		document.querySelector('script[type="application/ld+json"]').textContent
+	);
 
-	const observer = new MutationObserver(() => {
-		const title = document.querySelector('h1');
-		const inlineList = title.parentNode.querySelector('ul.ipc-inline-list');
+	const type = data['@type'];
+	const url = data.url;
 
-		if (!title) {
-			return;
+	const imdbId = url.match(/\/title\/(tt\d+)/);
+	let seriesId = null;
+	let seasonEpisode = null;
+
+	if (type === 'TVEpisode') {
+		const seriesUrl = document
+			.querySelector('a[data-testid="hero-title-block__series-link"]')
+			.getAttribute('href');
+
+		seriesId = seriesUrl.match(/\/title\/(tt\d+)\//)[1];
+
+		seasonEpisode = document
+			.querySelector(
+				'div[data-testid="hero-subnav-bar-season-episode-numbers-section"]'
+			)
+			.textContent.replace('<!-- -->', '');
+	}
+
+	return {
+		id: imdbId ? imdbId[1] : null,
+		type: type,
+		seriesId,
+		season: seasonEpisode ? seasonEpisode.split('.')[0].replace('S', '') : null,
+		episode: seasonEpisode
+			? seasonEpisode.split('.')[1].replace('E', '')
+			: null,
+	};
+}
+
+function isMediaPage() {
+	const allowedTypes = ['Movie', 'TVSeries', 'TVEpisode'];
+
+	const imdb = getIMDbData();
+	if (!imdb.type) return;
+
+	return allowedTypes.includes(imdb.type);
+}
+
+function addRealDebridLink() {
+	if (!isMediaPage()) return;
+
+	let base_url = 'https://debridmediamanager.com';
+
+	const imdb = getIMDbData();
+	if (!imdb.id) return;
+
+	let debridUrl = '#';
+
+	if (imdb.type === 'Movie') {
+		debridUrl = `${base_url}/movie/${imdb.id}`;
+	} else if (imdb.type === 'TVSeries') {
+		debridUrl = `${base_url}/show/${imdb.id}`;
+	} else if (imdb.type === 'TVEpisode') {
+		debridUrl = `${base_url}/show/${imdb.seriesId}/${imdb.season}`;
+	}
+
+	addLink('Debrid Media Manager', (e) => {
+		if (e.ctrlKey || e.metaKey) {
+			window.open(debridUrl);
+		} else {
+			createLightbox(debridUrl);
 		}
-
-		if (!!inlineList) {
-			addRealDebridLink(inlineList);
-		}
-
-		const allowedTypes = ['Movie', 'TVSeries', 'TVEpisode'];
-
-		const media_type = JSON.parse(
-			document.querySelector('script[type="application/ld+json"]').textContent
-		)['@type'];
-
-		if (!allowedTypes.includes(media_type)) {
-			resetTitleStyle(title);
-			return;
-		}
-
-		setTitleStyle(title);
 	});
+}
 
-	observer.observe(document.body, { childList: true, subtree: true });
+function addOpenInStremioLink() {
+	if (!isMediaPage()) return;
+
+	const imdb = getIMDbData();
+	if (!imdb.id) return;
+
+	let stremioUrl = '#';
+
+	if (imdb.type === 'Movie') {
+		stremioUrl = `stremio:///detail/movie/${imdb.id}`;
+	} else if (imdb.type === 'TVSeries') {
+		stremioUrl = `stremio:///detail/series/${imdb.id}`;
+	} else if (imdb.type === 'TVEpisode') {
+		stremioUrl = `stremio:///detail/series/${imdb.seriesId}/${imdb.seriesId}:${imdb.season}:${imdb.episode}`;
+	}
+
+	addLink('Stremio', stremioUrl);
+}
+
+function addWatchNowLink() {
+	if (!isMediaPage()) return;
+
+	let base_url = 'https://proxy.garageband.rocks/embed';
+	const imdb = getIMDbData();
+	let videoUrl = '#';
+
+	if (imdb.type === 'Movie') {
+		videoUrl = `${base_url}/movie/${imdb.id}`;
+	} else if (imdb.type === 'TVSeries') {
+		videoUrl = `${base_url}/tv/${imdb.id}`;
+	} else if (imdb.type === 'TVEpisode') {
+		videoUrl = `${base_url}/tv/${imdb.seriesId}?season=${imdb.season}&episode=${imdb.episode}`;
+	}
+
+	if (!videoUrl) {
+		return;
+	}
+
+	addLink('Watch Now', (e) => {
+		if (e.ctrlKey || e.metaKey) {
+			window.open(videoUrl);
+		} else {
+			createLightbox(videoUrl);
+		}
+	});
 }
 
 try {
-	main();
+	const observer = new MutationObserver(() => {
+		addWatchNowLink();
+		addOpenInStremioLink();
+		addRealDebridLink();
+	});
+
+	observer.observe(document.body, { childList: true, subtree: true });
 } catch (error) {
-	console.log('IMDb player: ', error);
+	console.error('IMDb Improvements: ', error);
 }

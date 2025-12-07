@@ -3,6 +3,7 @@
 // @version      1.5.0
 // @description  IMDb Improvements
 // @match        https://www.imdb.com/*
+// @match        https://m.imdb.com/*
 // @icon         https://m.media-amazon.com/images/G/01/imdb/images-ANDW73HA/favicon_desktop_32x32._CB1582158068_.png
 // @downloadURL  https://github.com/sandro-sikic/sandro-sikic/raw/main/configs/violentMonkey/imdb/index.user.js
 // @grant        none

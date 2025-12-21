@@ -4,8 +4,8 @@
 
 I’m a software engineer with a passion for building efficient, scalable applications. With years of experience in the field, I’m always excited to expand my knowledge, improve my skills, and share my projects with others.
 
-
 ## 📚 Contents
+
 - [🛠️ Tech Stack](#️-tech-stack)
 - [<img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/code.webp" width ="20">Skills](#-skills)
 - [⚙ My Configs](/configs/readme.md)
@@ -16,7 +16,6 @@ I’m a software engineer with a passion for building efficient, scalable applic
 - [👨‍💻 About Me](#-about-me)
 - [🎨 Design Tools](#-design-tools)
 - [📫 Get in Touch](#-get-in-touch)
-
 
 ---
 
@@ -31,11 +30,9 @@ I’ve found my tech stack sweet spot, focusing on:
 - **Databases**: PostgreSQL, Qdrant, Elasticsearch
 - **Cloud & DevOps**: AWS, Docker, GitHub Actions
 
-
 <br clear="both">
 
 ## <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/code.webp" width ="20"><b> Skills</b>
-
 
 <picture align="right">
   <source align="right"
@@ -137,19 +134,16 @@ I’ve found my tech stack sweet spot, focusing on:
 ### 📌 Featured Projects
 
 1. **[TsYoutube](https://tsyoutube.com)**  
-   *Description*: A learning platform integrated with youtube with a focus on transcription.
-   
-2. **[QuickMultiSearch](https://quickmultisearch.com)**  
-   *Description*: A powerful search tool built for rapid, multi-source search, designed to save time and streamline the search process. 
-   
-3. **[Fun2Play](https://fun2play.online)**  
-   *Description*: Interactive platform for online multiplayer turn based games.
-   
+   _A learning platform integrated with youtube with a focus on transcription._
+2. **[Quick Multi Search](https://quickmultisearch.com)**  
+   _A powerful search tool built for rapid, multi-source search, designed to save time and streamline the search process._
+3. **[Male Igre](https://maleigre.com)**  
+   _Interactive platform for online multiplayer turn based games._
 4. **Pakkt**  
-   *Description*: A comprehensive real estate management software designed to streamline the process of managing properties, clients, and transactions.
+   _A comprehensive real estate management software designed to streamline the process of managing properties, clients, and transactions._
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://buymeacoffee.com/sandrosikic">
-  <img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/buymeacoffee.webp" height="50">
+<img src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/buymeacoffee.webp" height="50">
 </a>
 
 <br clear="both">
@@ -171,15 +165,11 @@ I’m committed to continuous growth in the tech world. Here’s what I’m curr
 - **DevOps** - Building skills in infrastructure management and deployment practices
 - **CI/CD** - Setting up continuous integration and deployment pipelines for seamless development
 
-
 <br clear="both">
-
-
-
 
 ## 👨‍💻 About Me
 
-I'm the CEO of Insago, bringing a strong background in software engineering with hands-on experience in application development, design, deployment, and quality assurance. Over the years, I’ve honed my skills in creating high-quality software solutions that not only meet technical standards but also provide a seamless user experience.
+Bringing a strong background in software engineering with hands-on experience in application development, design, deployment, and quality assurance. Over the years, I’ve honed my skills in creating high-quality software solutions that not only meet technical standards but also provide a seamless user experience.
 
 As both a leader and a developer, I’m passionate about innovation and constantly aim to push the boundaries of technology in ways that can drive value. When I'm not immersed in code or leading my team, I enjoy capturing life's moments through photography.
 

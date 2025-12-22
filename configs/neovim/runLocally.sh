@@ -1,1 +1,1 @@
-docker build . -t neovim && docker run --rm -it --memory="0" --memory-swap="0" --cpu-shares=1024 neovim 
+docker build . -t neovim && docker run -v .:/host -w /host -it --rm --memory="0" --memory-swap="0" --cpu-shares=1024 neovim

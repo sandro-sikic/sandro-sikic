@@ -15,12 +15,9 @@ services:
       - default
 
   wordpress:
-    image: wordpress:6.0.3-php8.1-apache
+    image: ghcr.io/sandro-sikic/wordpress:latest
     volumes:
       - wordpress:/var/www/html
-      - /root/wordpress_custom_php.ini:/usr/local/etc/php/conf.d/php.ini:ro
-      - /root/wordpress_plugins:/usr/src/wordpress/wp-content/plugins
-      - /root/wordpress_themes:/usr/src/wordpress/wp-content/themes
     restart: always
     environment:
       WORDPRESS_DB_HOST: db:3306

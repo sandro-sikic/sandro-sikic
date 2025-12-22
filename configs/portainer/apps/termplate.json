@@ -2,7 +2,7 @@
 	"version": "3",
 	"templates": [
 		{
-			"type": "stack",
+			"type": 1,
 			"title": "Wordpress",
 			"description": "Wordpress setup with a MySQL database",
 			"note": "Deploys a Wordpress instance connected to a MySQL database.",
@@ -22,7 +22,7 @@
 			]
 		},
 		{
-			"type": "stack",
+			"type": 1,
 			"title": "Static site",
 			"description": "Static site with nginx, host any folder on local machine, read only",
 			"note": "Deploys a Nginx instance with mounted local volume in read only mode.",

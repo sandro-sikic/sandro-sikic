@@ -3,32 +3,24 @@ version: '3.2'
 services:
   portainer:
     image: portainer/portainer-ce
-    command: -H tcp://tasks.agent:9001 --tlsskipverify
     # ports:
     #   - "9000:9000"
     #   - "8000:8000"
+    restart: always
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
     environment:
       - VIRTUAL_HOST=
       - VIRTUAL_PORT=9000
       - LETSENCRYPT_HOST=
     networks:
-      - agent_network
       - proxy
-    deploy:
-      mode: replicated
-      replicas: 1
-      placement:
-        constraints: [node.role == manager]
 
 networks:
-  agent_network:
-    driver: overlay
-    attachable: true
   proxy:
-    external:
-      name: nginx-proxy
+    external: true
+    name: proxy_network
 
 volumes:
   portainer_data:

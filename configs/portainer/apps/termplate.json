@@ -1,8 +1,8 @@
 {
-	"version": "2",
+	"version": "3",
 	"templates": [
 		{
-			"type": 2,
+			"type": 1,
 			"title": "Wordpress",
 			"description": "Wordpress setup with a MySQL database",
 			"note": "Deploys a Wordpress instance connected to a MySQL database.",
@@ -10,8 +10,8 @@
 			"platform": "linux",
 			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
 			"repository": {
-				"url": "https://github.com/sandro-sikic/sandro-sikic",
-				"stackfile": "configs/portainer/stacks/wordpress/docker-stack.yml"
+				"url": "https://github.com/sandro-sikic/sandro-sikic/tree/main/configs/portainer",
+				"stackfile": "configs/portainer/apps/stacks/wordpress/docker-compose.yml"
 			},
 			"env": [
 				{
@@ -22,7 +22,7 @@
 			]
 		},
 		{
-			"type": 2,
+			"type": 1,
 			"title": "Static site",
 			"description": "Static site with nginx, host any folder on local machine, read only",
 			"note": "Deploys a Nginx instance with mounted local volume in read only mode.",
@@ -30,8 +30,8 @@
 			"platform": "linux",
 			"logo": "https://d1q6f0aelx0por.cloudfront.net/product-logos/library-nginx-logo.png",
 			"repository": {
-				"url": "https://github.com/sandro-sikic/sandro-sikic",
-				"stackfile": "configs/portainer/stacks/wordpress/docker-stack.yml"
+				"url": "https://github.com/sandro-sikic/sandro-sikic/tree/main/configs/portainer",
+				"stackfile": "configs/portainer/apps/stacks/static/docker-compose.yml"
 			},
 			"env": [
 				{

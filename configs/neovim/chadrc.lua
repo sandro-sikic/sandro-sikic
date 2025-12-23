@@ -119,6 +119,11 @@ local options = {
 			vim.opt.relativenumber = true
 			vim.opt.modifiable = true
 			vim.opt.clipboard = "unnamedplus"
+			vim.g.clipboard = {
+				name = "osc52",
+  			copy = {['+'] = copy, ['*'] = copy},
+  			paste = {['+'] = paste, ['*'] = paste},
+			}
 		end,
 	},
 }

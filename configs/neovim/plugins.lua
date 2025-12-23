@@ -26,7 +26,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		opts = {
-            filters = {
+      filters = {
 				dotfiles = false,
 			}
 		},

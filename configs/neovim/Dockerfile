@@ -4,10 +4,12 @@ WORKDIR /root
 
 RUN apk update
 
-RUN apk add nodejs python3 npm go
+# required for installing some LSP servers
+RUN apk add nodejs python3 npm go 
 
-RUN apk add git neovim ripgrep build-base wget unzip neovim-doc --update && \
-  git clone https://github.com/NvChad/starter ~/.config/nvim
+RUN apk add git neovim xclip ripgrep build-base wget unzip neovim-doc --update
+
+RUN git clone https://github.com/NvChad/starter ~/.config/nvim
 
 RUN rm -rf ~/.config/nvim/.git
 

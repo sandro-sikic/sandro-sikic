@@ -40,6 +40,12 @@ local options = {
 			order = { "treeOffset", "buffers", "tabs", "btns" },
 			modules = nil,
 		},
+		
+		nvimtree = {
+			filters = {
+				dotfiles = false,
+			}
+		}
 	},
 
 	nvdash = {

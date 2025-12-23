@@ -23,12 +23,25 @@ return {
 			file_ignore_patterns = { "node_modules", "%.jpg", "%.jpeg", "%.png", "%.otf", "%.ttf" },
 		},
 	},
-	{
-		"nvim-treesitter/nvim-treesitter",
+  {
+    "nvim-tree/nvim-tree.lua",
 		opts = {
-      filters = {
+			view = {
+				width = 40,
+				side = "left",
+			},
+			filters = {
 				dotfiles = false,
-			}
-		},
-	},
+			},
+			update_focused_file = {
+				enable = true,
+				update_root = true,
+			},
+  		actions = {
+        open_file = {
+          quit_on_open = true,
+        },
+   		},
+		}
+  },
 }

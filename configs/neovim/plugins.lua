@@ -23,4 +23,12 @@ return {
 			file_ignore_patterns = { "node_modules", "%.jpg", "%.jpeg", "%.png", "%.otf", "%.ttf" },
 		},
 	},
+	{
+		"nvim-treesitter/nvim-treesitter",
+		opts = {
+            filters = {
+				dotfiles = false,
+			}
+		},
+	},
 }

@@ -116,7 +116,7 @@ To set up custom background images in VSCode:
 To use a custom template, point to the following `template.json` URL in Portainer settings:
 
 ```text
-https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/portainer/template.json
+https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/portainer/apps/template.json
 ```
 
 ### 🛡️ ViolentMonkey

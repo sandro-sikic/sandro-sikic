@@ -124,6 +124,7 @@ local options = {
 			vim.opt.ruler = false
 			vim.opt.relativenumber = true
 			vim.opt.modifiable = true
+			vim.opt.clipboard = "unnamedplus"
 		end,
 	},
 }

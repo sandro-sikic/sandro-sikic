@@ -150,7 +150,6 @@ I’ve found my tech stack sweet spot, focusing on:
 
 ### 📚 Other Sites
 
-- [cool-silo.com](https://cool-silo.com)
 - [atechusluge.hr](https://atechusluge.hr)
 - [dreamviewapartment.com](https://dreamviewapartment.com)
 - [linija-art.com](https://linija-art.com)

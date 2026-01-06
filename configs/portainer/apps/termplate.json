@@ -2,7 +2,7 @@
 	"version": "3",
 	"templates": [
 		{
-			"type": 1,
+			"type": 2,
 			"title": "Wordpress",
 			"description": "Wordpress setup with a MySQL database",
 			"note": "Deploys a Wordpress instance connected to a MySQL database.",
@@ -22,7 +22,7 @@
 			]
 		},
 		{
-			"type": 1,
+			"type": 2,
 			"title": "Static site",
 			"description": "Static site with nginx, host any folder on local machine, read only",
 			"note": "Deploys a Nginx instance with mounted local volume in read only mode.",
@@ -47,7 +47,7 @@
 			]
 		},
 		{
-			"type": "stack",
+			"type": 2,
 			"title": "Portainer Agent",
 			"description": "Manage all the resources in your Swarm cluster",
 			"note": "The agent will be deployed globally inside your cluster and available on port 9001.",

@@ -27,7 +27,7 @@ services:
       - LETSENCRYPT_HOST=
     networks:
       - agent_network
-      - proxy
+      - proxy_network
     deploy:
       mode: replicated
       replicas: 1
@@ -38,9 +38,9 @@ networks:
   agent_network:
     driver: overlay
     attachable: true
-  proxy:
-    external:
-      name: nginx-proxy
+
+  proxy_network:
+    external: true
 
 volumes:
   portainer_data:

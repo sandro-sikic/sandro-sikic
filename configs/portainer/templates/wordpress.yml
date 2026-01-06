@@ -28,7 +28,7 @@ services:
       LETSENCRYPT_HOST: ${HOSTNAME}
       VIRTUAL_PORT: 80
     networks:
-      - proxy
+      - proxy_network
       - default
 
 volumes:
@@ -36,6 +36,5 @@ volumes:
   wordpress:
 
 networks:
-  proxy:
-    external:
-      name: nginx-proxy
+  proxy_network:
+    external: true

@@ -15,12 +15,11 @@ services:
       - VIRTUAL_PORT=9000
       - LETSENCRYPT_HOST=
     networks:
-      - proxy
+      - proxy_network
 
 networks:
-  proxy:
+  proxy_network:
     external: true
-    name: proxy_network
 
 volumes:
   portainer_data:

@@ -22,7 +22,7 @@
 			]
 		},
 		{
-			"type": 2,
+			"type": 3,
 			"title": "Static site",
 			"description": "Static site with nginx, host any folder on local machine, read only",
 			"note": "Deploys a Nginx instance with mounted local volume in read only mode.",
@@ -60,7 +60,6 @@
 			}
 		},
 		{
-			"id": 68,
 			"type": 3,
 			"title": "Static site",
 			"description": "Static site with nginx, host any folder on local machine, read only",
@@ -73,19 +72,13 @@
 			},
 			"env": [
 				{
-					"name": "MANUBES_SECRET",
-					"label": "manubes secret"
+					"name": "ZIPPED_SITE_LINK",
+					"label": "Zipped site link"
 				},
 				{
-					"name": "ACCEPT_EULA",
-					"label": "Accept EULA",
-					"select": [
-						{
-							"text": "Yes, I accept",
-							"value": "true",
-							"default": true
-						}
-					]
+					"name": "HOSTNAME",
+					"label": "Website Hostname",
+					"description": "Url for nginx proxy redirect to."
 				}
 			]
 		}

@@ -11,7 +11,7 @@
 			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
 			"repository": {
 				"url": "https://github.com/sandro-sikic/sandro-sikic",
-				"stackfile": "configs/portainer/apps/stacks/wordpress/docker-stack.yml"
+				"stackfile": "configs/portainer/templates/wordpress.yml"
 			},
 			"env": [
 				{
@@ -31,7 +31,7 @@
 			"logo": "https://d1q6f0aelx0por.cloudfront.net/product-logos/library-nginx-logo.png",
 			"repository": {
 				"url": "https://github.com/sandro-sikic/sandro-sikic",
-				"stackfile": "configs/portainer/apps/stacks/static/docker-stack.yml"
+				"stackfile": "configs/portainer/templates/static.yml"
 			},
 			"env": [
 				{
@@ -47,7 +47,7 @@
 			]
 		},
 		{
-			"type": 2,
+			"type": 3,
 			"title": "Portainer Agent",
 			"description": "Manage all the resources in your Swarm cluster",
 			"note": "The agent will be deployed globally inside your cluster and available on port 9001.",
@@ -55,32 +55,9 @@
 			"platform": "linux",
 			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/portainer.png",
 			"repository": {
-				"url": "https://github.com/deviantony/templates",
-				"stackfile": "configs/portainer/apps/stacks/static/docker-stack.yml"
-			}
-		},
-		{
-			"type": 3,
-			"title": "Static site",
-			"description": "Static site with nginx, host any folder on local machine, read only",
-			"categories": ["STATIC"],
-			"platform": "linux",
-			"logo": "https://d1q6f0aelx0por.cloudfront.net/product-logos/library-nginx-logo.png",
-			"repository": {
 				"url": "https://github.com/portainer/templates",
-				"stackfile": "edge/inray-manubes-edge-node/docker-compose.yml"
-			},
-			"env": [
-				{
-					"name": "ZIPPED_SITE_LINK",
-					"label": "Zipped site link"
-				},
-				{
-					"name": "HOSTNAME",
-					"label": "Website Hostname",
-					"description": "Url for nginx proxy redirect to."
-				}
-			]
+				"stackfile": "stacks/portainer-agent/docker-stack.yml"
+			}
 		}
 	]
 }

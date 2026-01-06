@@ -62,11 +62,11 @@
 		{
 			"id": 68,
 			"type": 3,
-			"title": "Manubes Edge Node",
-			"description": "High-performance cloud platform for industrial production management. Manubes is a no-code solution that is used to structure, monitor and control production data, systems and processes in the cloud.",
-			"categories": ["edge"],
+			"title": "Static site",
+			"description": "Static site with nginx, host any folder on local machine, read only",
+			"categories": ["STATIC"],
 			"platform": "linux",
-			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/inray-manubes.png",
+			"logo": "https://d1q6f0aelx0por.cloudfront.net/product-logos/library-nginx-logo.png",
 			"repository": {
 				"url": "https://github.com/portainer/templates",
 				"stackfile": "edge/inray-manubes-edge-node/docker-compose.yml"

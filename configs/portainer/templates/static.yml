@@ -5,11 +5,20 @@ services:
     image: bash:latest
     volumes:
       - data:/data
-    command:
-      [
+    command: [
         'bash',
         '-c',
-        'rm -r /download; mkdir /download; rm -r /data/*; wget ${ZIPPED_SITE_LINK} -O /download/site.zip; unzip /download/site.zip -d /data/',
+        'apk add --no-cache git wget unzip; \
+        rm -rf /data/*; \
+        if echo "${SITE_LINK}" | grep -q "github.com"; then \
+        git clone "${SITE_LINK}" /data; \
+        elif [ -n "${SITE_LINK}" ]; then \
+        rm -rf /download; mkdir /download; \
+        wget "${SITE_LINK}" -O /download/site.zip; \
+        unzip /download/site.zip -d /data; \
+        else \
+        echo "No SITE_LINK provided."; exit 1; \
+        fi',
       ]
     deploy:
       restart_policy:

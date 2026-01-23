@@ -35,9 +35,9 @@
 			},
 			"env": [
 				{
-					"name": "ZIPPED_SITE_LINK",
-					"label": "Zipped site link",
-					"description": "Url of the zipped file to be mounted and proxied."
+					"name": "SITE_LINK",
+					"label": "Site link",
+					"description": "Url of the site to be mounted and proxied. It can be a remote full size zip file or a github repository link."
 				},
 				{
 					"name": "HOSTNAME",

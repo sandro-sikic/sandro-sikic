@@ -1,6 +1,6 @@
 <img width="100%" src="https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/assets/banner.png" style="border-radius: 10px" />
 
-## 🚀 Software Engineer | Full-Stack Developer | Tech Enthusiast
+## 🚀 Software Developer | Tech Enthusiast
 
 I’m a software engineer with a passion for building efficient, scalable applications. With years of experience in the field, I’m always excited to expand my knowledge, improve my skills, and share my projects with others.
 

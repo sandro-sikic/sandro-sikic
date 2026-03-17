@@ -11,7 +11,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_TAG: latest
-  REPOSITORY: sqlit
+  REPOSITORY: ${{ github.repository }}
   REGISTRY_USERNAME: ${{ github.actor }}
   REGISTRY_PASSWORD: ${{ secrets.GHCR }}
 

@@ -8,10 +8,14 @@ on:
     branches:
       - main
 
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   REGISTRY: ghcr.io # Github Container Registry
   IMAGE_TAG: latest
-  REPOSITORY: ${{ github.repository }}
+  REPOSITORY: neovim
   REGISTRY_USERNAME: ${{ github.actor }} # Github username
   REGISTRY_PASSWORD: ${{ secrets.GHCR }} # Personal access token
 
@@ -19,8 +23,8 @@ jobs:
   neovim: # Job name for building image
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: neovim # Name of the image
-      BUILD_LOCATION: configs/neovim # Path to Dockerfile in the repository
+      SERVICE_NAME: neovim # Name of the service in the docker-compose file
+      DOCKERFILE_LOCATION: configs/neovim # Path to Dockerfile directory in the repository
 
     steps:
       - name: Checkout repository
@@ -34,6 +38,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker buildx build ${{ env.BUILD_LOCATION }} \
-            --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} \
+          docker buildx build ${{ env.DOCKERFILE_LOCATION }} \
+            --tag ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.SERVICE_NAME }} \
+            --cache-from type=registry,ref=${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.SERVICE_NAME }}-cache \
+            --cache-to type=registry,ref=${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.SERVICE_NAME }}-cache,mode=max \
             --push

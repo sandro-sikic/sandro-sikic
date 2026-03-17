@@ -11,7 +11,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_TAG: latest
-  REPOSITORY: ${{ github.repository }}
+  REPOSITORY: sqlit
   REGISTRY_USERNAME: ${{ github.actor }}
   REGISTRY_PASSWORD: ${{ secrets.GHCR }}
 
@@ -19,8 +19,8 @@ jobs:
   sqlit:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: sqlit
-      BUILD_LOCATION: configs/sqlit
+      SERVICE_NAME: sqlit # Name of the service in the docker-compose file
+      DOCKERFILE_LOCATION: configs/sqlit # Path to Dockerfile directory in the repository
 
     steps:
       - name: Checkout repository
@@ -34,6 +34,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker buildx build ${{ env.BUILD_LOCATION }} \
-            --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} \
+          docker buildx build ${{ env.DOCKERFILE_LOCATION }} \
+            --tag ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.SERVICE_NAME }} \
+            --cache-from type=registry,ref=${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.SERVICE_NAME }}-cache \
+            --cache-to type=registry,ref=${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.SERVICE_NAME }}-cache,mode=max \
             --push

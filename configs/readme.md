@@ -5,6 +5,7 @@
   - [🐳 Docker TUI](#-docker-tui)
   - [📦 NPM Update](#-npm-update)
   - [📦 NeoVim](#-neovim)
+  - [🗄️ Sqlit](#️-sqlit)
   - [🎨 PlantUML Theme](#-plantuml-theme)
 - [🚀 Installations](#-installations)
   - [🖥️ WezTerm](#️-wezterm)
@@ -28,6 +29,7 @@
 | 📡 [Termscp](https://github.com/veeso/termscp)          | A terminal-based SCP client.               |
 | 📉 [Ncdu](https://dev.yorhel.nl/ncdu)                   | Disk usage analyzer with an intuitive TUI. |
 | 🔍 [NPM-Check](https://www.npmjs.com/package/npm-check) | Tool for managing outdated NPM packages.   |
+| 🗄️ [Sqlit](https://github.com/Maxteabag/sqlit)          | A user-friendly TUI for SQL databases.     |
 
 # 📜 Commands
 
@@ -53,6 +55,14 @@ To run NeoVim from Docker, use the following command:
 
 ```bash
 docker run --pull=always -v .:/host -w /host -it --rm --cpu-shares=8192 ghcr.io/sandro-sikic/sandro-sikic-neovim
+```
+
+### 🗄️ Sqlit
+
+To run the Sqlit SQL TUI from Docker, mounting the current directory:
+
+```bash
+docker run -it --rm -v "$(pwd):/data" ghcr.io/sandro-sikic/sandro-sikic-sqlit:latest
 ```
 
 ### 🎨 PlantUML Theme

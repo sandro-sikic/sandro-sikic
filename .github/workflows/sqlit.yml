@@ -1,0 +1,36 @@
+name: Build sqlit
+
+on:
+  schedule:
+    - cron: '0 0 1 * *' # First day of every month
+  workflow_dispatch: # Allow manual trigger
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_TAG: latest
+  REPOSITORY: ${{ github.repository }}
+  REGISTRY_USERNAME: ${{ github.actor }}
+  REGISTRY_PASSWORD: ${{ secrets.GHCR }}
+
+jobs:
+  sqlit:
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: sqlit
+      BUILD_LOCATION: configs/sqlit
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Docker login
+        run: docker login --username ${{ env.REGISTRY_USERNAME }} --password ${{ env.REGISTRY_PASSWORD }} ${{ env.REGISTRY }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: |
+          docker buildx build ${{ env.BUILD_LOCATION }} \
+            --tag ${{ env.REGISTRY }}/${{ env.REPOSITORY }}-${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} \
+            --push

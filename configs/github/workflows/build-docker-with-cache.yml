@@ -36,7 +36,7 @@ jobs:
       - name: Build Docker image
         run: |
           docker buildx build ${{ env.DOCKERFILE_LOCATION }} \
-            --tag ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.SERVICE_NAME }} \
-            --cache-from type=registry,ref=${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.SERVICE_NAME }}-cache \
-            --cache-to type=registry,ref=${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.SERVICE_NAME }}-cache,mode=max \
+            --tag ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.REPOSITORY }}:${{ env.SERVICE_NAME }} \
+            --cache-from type=registry,ref=${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.REPOSITORY }}:${{ env.SERVICE_NAME }}-cache \
+            --cache-to type=registry,ref=${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.REPOSITORY }}:${{ env.SERVICE_NAME }}-cache,mode=max \
             --push

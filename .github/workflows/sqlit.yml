@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: sqlit
@@ -35,6 +39,4 @@ jobs:
         run: |
           docker buildx build ${{ env.DOCKERFILE_LOCATION }} \
             --tag ${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.SERVICE_NAME }} \
-            --cache-from type=registry,ref=${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.SERVICE_NAME }}-cache \
-            --cache-to type=registry,ref=${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.SERVICE_NAME }}-cache,mode=max \
             --push

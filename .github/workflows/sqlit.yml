@@ -10,7 +10,6 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_TAG: latest
   IMAGE_NAME: sqlit
   REGISTRY_USERNAME: ${{ github.actor }}
   REGISTRY_PASSWORD: ${{ secrets.GHCR }}
@@ -19,7 +18,7 @@ jobs:
   sqlit:
     runs-on: ubuntu-latest
     env:
-      SERVICE_NAME: sqlit # Name of the service in the docker-compose file
+      SERVICE_NAME: latest # Name of the service in the docker-compose file
       DOCKERFILE_LOCATION: configs/sqlit # Path to Dockerfile directory in the repository
 
     steps:

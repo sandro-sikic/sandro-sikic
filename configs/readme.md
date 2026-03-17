@@ -54,7 +54,7 @@ npx npm-check -u
 To run NeoVim from Docker, use the following command:
 
 ```bash
-docker run --pull=always -v .:/host -w /host -it --rm --cpu-shares=8192 ghcr.io/sandro-sikic/sandro-sikic-neovim
+docker run --pull=always -v .:/host -w /host -it --rm --cpu-shares=8192 ghcr.io/sandro-sikic/neovim
 ```
 
 ### 🗄️ Sqlit
@@ -62,7 +62,7 @@ docker run --pull=always -v .:/host -w /host -it --rm --cpu-shares=8192 ghcr.io/
 To run the Sqlit SQL TUI from Docker, mounting the current directory:
 
 ```bash
-docker run -it --rm -v "$(pwd):/data" ghcr.io/sandro-sikic/sandro-sikic-sqlit:latest
+docker run -it --rm -v .:/data ghcr.io/sandro-sikic/sqlit:latest
 ```
 
 ### 🎨 PlantUML Theme

@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  dbgate:
+    image: dbgate/dbgate
+    restart: always
+    ports:
+      - 3001:3000
+    volumes:
+      - ./db.sqlite3:/app/db.sqlite3
+    environment:
+      CONNECTIONS: sqlite,pgsql
+      LABEL_sqlite: SQLITE
+      FILE_sqlite: /app/db.sqlite3
+      ENGINE_sqlite: sqlite@dbgate-plugin-sqlite
+
+      LABEL_pgsql: Postgres
+      SERVER_pgsql: ${DATABASE_HOST:-postgres}
+      USER_pgsql: ${DATABASE_USER:-postgres}
+      PASSWORD_pgsql: ${DATABASE_PASSWORD:-postgres}
+      PORT_pgsql: ${DATABASE_PORT:-5432}
+      ENGINE_pgsql: postgres@dbgate-plugin-postgres

@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  download_and_unzip:
+    image: bash:latest
+    volumes:
+      - data:/data
+    command: [
+        'bash',
+        '-c',
+        'apk add --no-cache git wget unzip; \
+        rm -rf /data/*; \
+        if echo "${SITE_LINK}" | grep -q "github.com"; then \
+        git clone "${SITE_LINK}" /data; \
+        elif [ -n "${SITE_LINK}" ]; then \
+        rm -rf /download; mkdir /download; \
+        wget "${SITE_LINK}" -O /download/site.zip; \
+        unzip /download/site.zip -d /data; \
+        else \
+        echo "No SITE_LINK provided."; exit 1; \
+        fi',
+      ]
+    deploy:
+      restart_policy:
+        condition: none
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - data:/usr/share/nginx/html:ro
+    restart: always
+    environment:
+      VIRTUAL_HOST: ${HOSTNAME}
+      LETSENCRYPT_HOST: ${HOSTNAME}
+      VIRTUAL_PORT: 80
+    networks:
+      - proxy_network
+
+volumes:
+  data:
+
+networks:
+  proxy_network:
+    external: true

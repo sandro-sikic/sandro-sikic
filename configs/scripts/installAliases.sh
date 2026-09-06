@@ -11,6 +11,12 @@ if ! command -v docker >/dev/null 2>&1; then
   echo "Warning: 'docker' was not found in PATH. The aliases will not work until Docker is installed." >&2
 fi
 
+for dep in fd fzf; do
+  if ! command -v "$dep" >/dev/null 2>&1; then
+    echo "Warning: '$dep' was not found in PATH. The cdf function will not work until $dep is installed." >&2
+  fi
+done
+
 if ! $ASSUME_YES && [[ ! -t 0 ]] && ! : 2>/dev/null </dev/tty; then
   echo "Warning: no interactive terminal detected — prompts cannot be shown, missing programs will be skipped." >&2
   echo "Re-run with -y to install automatically." >&2
@@ -77,6 +83,7 @@ install_posix_program() {
   case "$prog" in
     nvim) alias_line="$NVIM_ALIAS" ;;
     sqlit) alias_line="$SQLIT_ALIAS" ;;
+    cdf) alias_line="cdf() { local dir; dir=\$(fd --type d . ~ 2>/dev/null | fzf); [ -n \"\$dir\" ] && cd \"\$dir\"; }" ;;
   esac
   touch "$RC_FILE"
   sed -i "/^${marker}:start$/,/^${marker}:end$/d" "$RC_FILE"
@@ -105,6 +112,16 @@ function sqlit --description 'Sqlit via Docker'
 end
 EOF
       ;;
+    cdf)
+      cat >"${FISH_FUNCTIONS_DIR}/cdf.fish" <<'EOF'
+function cdf --description 'cd to a directory picked via fd + fzf'
+    set -l dir (fd --type d . ~ 2>/dev/null | fzf)
+    if test -n "$dir"
+        cd "$dir"
+    end
+end
+EOF
+      ;;
   esac
 }
 
@@ -121,14 +138,14 @@ process_program() {
   fi
 
   if [[ "$SHELL_NAME" == "fish" ]]; then
-    if confirm "${prog} is not found. Install the Docker function for fish (${FISH_FUNCTIONS_DIR})? [y/N] "; then
+    if confirm "${prog} is not found. Install the ${prog} function for fish (${FISH_FUNCTIONS_DIR})? [y/N] "; then
       install_fish_program "$prog"
       echo "Installed ${prog} function for fish in ${FISH_FUNCTIONS_DIR}"
     else
       echo "${prog}: skipped (declined)"
     fi
   else
-    if confirm "${prog} is not found. Install the Docker alias for ${SHELL_NAME} (${RC_FILE})? [y/N] "; then
+    if confirm "${prog} is not found. Install the ${prog} alias for ${SHELL_NAME} (${RC_FILE})? [y/N] "; then
       install_posix_program "$prog"
       echo "Installed ${prog} alias for ${SHELL_NAME} in ${RC_FILE}"
     else
@@ -147,7 +164,7 @@ case "$SHELL_NAME" in
     ;;
 esac
 
-for prog in nvim sqlit; do
+for prog in nvim sqlit cdf; do
   process_program "$prog"
 done
 

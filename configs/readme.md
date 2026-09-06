@@ -11,9 +11,13 @@
   - [🖥️ WezTerm](#️-wezterm)
   - [🛠️ VSCode](#️-vscode)
   - [✍️ NeoVim](#️-neovim)
-  - [🐳 Docker Aliases](#-docker-aliases)
   - [📂 Portainer](#-portainer)
   - [🛡️ ViolentMonkey](#️-violentmonkey)
+- [🛠️ Scripts](#️-scripts)
+  - [🐳 Install Aliases](#-installaliasessh)
+  - [📂 List Directory](#-listdirsh)
+  - [🛡️ Safe Arch Update](#️-safearchupdate)
+  - [🌐 Debian Server Setup](#-debianserversetup)
 
 ---
 
@@ -122,22 +126,6 @@ To set up custom background images in VSCode:
 
 - Place the configuration file at `~/.config/nvim/lua/custom/chadrc.lua`.
 
-### 🐳 Docker Aliases
-
-Install shell aliases that run the NeoVim and Sqlit commands from [📜 Commands](#-commands) inside Docker. The script auto-detects your shell (`$SHELL`: bash, zsh, or fish):
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/scripts/installAliases.sh | bash
-```
-
-- For each program (`nvim`, `sqlit`), the script checks whether the program is already installed on your system or its alias already exists; either way it is skipped. Missing programs are installed after a prompt, or automatically with:
-
-  ```bash
-  curl -fsSL https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/scripts/installAliases.sh | bash -s -- -y
-  ```
-- Requires Docker. Re-running the script only fills in missing programs.
-- After installing, reload your shell (`source ~/.bashrc`, `source ~/.zshrc`) or open a new terminal (fish loads the functions automatically).
-
 ### 📂 Portainer
 
 To use a custom template, point to the following `template.json` URL in Portainer settings:
@@ -170,3 +158,63 @@ https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/portain
 
 4. **Enjoy the Script**  
    The script is now installed and will run automatically on supported pages.
+
+---
+
+# 🛠️ Scripts
+
+Helper scripts maintained in this repository, runnable straight from the public mirror.
+
+### 🐳 installAliases.sh
+
+Installs Docker-based shell aliases/functions for `nvim` and `sqlit` (see [📜 Commands](#-commands)), plus `cdf`, an [fd](https://github.com/sharkdp/fd) + [fzf](https://github.com/junegunn/fzf) directory jumper. The script auto-detects your shell (`$SHELL`: bash, zsh, or fish) and installs into `~/.bashrc`, `~/.zshrc`, or `~/.config/fish/functions/`, skipping already-installed items and prompting before installing:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/scripts/installAliases.sh | bash
+```
+
+- Pass `-y` to skip all prompts and install unattended:
+
+  ```bash
+  curl -fsSL https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/scripts/installAliases.sh | bash -s -- -y
+  ```
+- Requires Docker. Re-running the script only fills in missing programs.
+- `fd` and `fzf` are optional and only needed for `cdf`.
+- After installing, reload your shell (`source ~/.bashrc`, `source ~/.zshrc`) or open a new terminal (fish loads the functions automatically).
+
+### 📂 listDir.sh
+
+Prints an aligned table of a directory's immediate entries — permissions, owner, group, human-readable size, mtime, recursive file count, and name — sorted by file count, with recursive totals at the bottom:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/scripts/listDir.sh -o ~/.local/bin/listdir.sh && chmod +x ~/.local/bin/listdir.sh
+listdir.sh <path>
+```
+
+- Takes exactly one argument: the directory to inspect.
+- Requires GNU coreutils `stat`, `find`, and `sort` (not macOS-safe); `numfmt` is optional and enables human-readable sizes.
+
+### 🛡️ safeUpdateArch.sh
+
+Runs a full Arch Linux upgrade (`pacman -Syu`) while holding back packages listed in the `PINNED_PACKAGES` array at the top of the script. A pinned package is skipped while the repos offer the pinned version (or older); repo versions newer than the pin are allowed through (the comparison ignores the Arch pkgrel):
+
+```bash
+sudo ./safeUpdateArch.sh
+```
+
+- Arch Linux only — requires `pacman` and `vercmp`.
+- Use `-n` / `--dry-run` to print decisions and the pacman command without changing anything.
+- The script auto re-execs itself with `sudo` when not run as root.
+- Edit `PINNED_PACKAGES` at the top of the script to add pins (`"package=version"`).
+
+### 🌐 serverSetupDebian.sh
+
+Debian server bootstrap: installs base tools (tmux, ncdu, htop, git, curl, make, vim, …), adds Docker's official apt repository and GPG key, removes conflicting container packages, installs `docker-ce` with the compose plugin, then smoke-tests with `docker run hello-world`:
+
+```bash
+sudo ./serverSetupDebian.sh
+```
+
+- Debian only — uses `$VERSION_CODENAME` from `/etc/os-release` to pick the apt repository.
+- Requires `apt` and network access.
+- Run from a root-capable shell block; the script uses inline `sudo`.

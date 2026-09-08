@@ -179,7 +179,8 @@ curl -fsSL https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/conf
   curl -fsSL https://raw.githubusercontent.com/sandro-sikic/sandro-sikic/main/configs/scripts/installAliases.sh | bash -s -- -y
   ```
 - Requires Docker. Re-running the script only fills in missing programs.
-- `fd` and `fzf` are optional and only needed for `cdf`.
+- `nvim` installs as a shell function (fish and bash/zsh alike), not a plain alias: with no argument it mounts the current directory, a directory argument is mounted at `/host`, a file argument mounts its parent directory and opens that file, and an unknown path errors.
+- `fd` and `fzf` are optional and only needed for `cdf`, which lists results shallow-first.
 - After installing, reload your shell (`source ~/.bashrc`, `source ~/.zshrc`) or open a new terminal (fish loads the functions automatically).
 
 ### 📂 listDir.sh

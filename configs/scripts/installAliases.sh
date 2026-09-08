@@ -22,7 +22,24 @@ if ! $ASSUME_YES && [[ ! -t 0 ]] && ! : 2>/dev/null </dev/tty; then
   echo "Re-run with -y to install automatically." >&2
 fi
 
-NVIM_ALIAS="alias nvim='docker run --pull=always -v .:/host -w /host -it --rm --cpu-shares=8192 ghcr.io/sandro-sikic/neovim'"
+NVIM_ALIAS="$(cat <<'EOF'
+nvim() {
+    local mount_dir=. files=
+    if [[ $# -ge 1 ]]; then
+        if [[ -d "$1" ]]; then
+            mount_dir="$1"
+        elif [[ -f "$1" ]]; then
+            mount_dir="$(dirname "$1")"
+            files="$(basename "$1")"
+        else
+            echo "nvim: path not found: $1" >&2
+            return 1
+        fi
+    fi
+    docker run --pull=always -v "$mount_dir":/host -w /host -it --rm --cpu-shares=8192 ghcr.io/sandro-sikic/neovim ${files:+"$files"}
+}
+EOF
+)"
 SQLIT_ALIAS="alias sqlit='docker run --pull=always --network host -v .:/data -w /data -v /var/run/docker.sock:/var/run/docker.sock -e DOCKER_HOST=\$DOCKER_HOST -it --rm ghcr.io/sandro-sikic/sqlit:latest'"
 
 FISH_FUNCTIONS_DIR="${HOME}/.config/fish/functions"
@@ -83,7 +100,7 @@ install_posix_program() {
   case "$prog" in
     nvim) alias_line="$NVIM_ALIAS" ;;
     sqlit) alias_line="$SQLIT_ALIAS" ;;
-    cdf) alias_line="cdf() { local dir; dir=\$(fd --type d . ~ 2>/dev/null | fzf); [ -n \"\$dir\" ] && cd \"\$dir\"; }" ;;
+    cdf) alias_line="cdf() { local dir; dir=\$(fd --type d . ~ 2>/dev/null | awk -F/ '{print NF \"\t\" \$0}' | sort -k1,1n -k2 | cut -f2- | fzf); [ -n \"\$dir\" ] && cd \"\$dir\"; }" ;;
   esac
   touch "$RC_FILE"
   sed -i "/^${marker}:start$/,/^${marker}:end$/d" "$RC_FILE"
@@ -101,7 +118,20 @@ install_fish_program() {
     nvim)
       cat >"${FISH_FUNCTIONS_DIR}/nvim.fish" <<'EOF'
 function nvim --description 'NeoVim via Docker'
-    docker run --pull=always -v .:/host -w /host -it --rm --cpu-shares=8192 ghcr.io/sandro-sikic/neovim $argv
+    set -l mount_dir .
+    set -l files
+    if set -q argv[1]
+        if test -d $argv[1]
+            set mount_dir $argv[1]
+        else if test -f $argv[1]
+            set mount_dir (dirname $argv[1])
+            set files (basename $argv[1])
+        else
+            echo "nvim: path not found: $argv[1]" >&2
+            return 1
+        end
+    end
+    docker run --pull=always -v $mount_dir:/host -w /host -it --rm --cpu-shares=8192 ghcr.io/sandro-sikic/neovim $files
 end
 EOF
       ;;
@@ -115,7 +145,7 @@ EOF
     cdf)
       cat >"${FISH_FUNCTIONS_DIR}/cdf.fish" <<'EOF'
 function cdf --description 'cd to a directory picked via fd + fzf'
-    set -l dir (fd --type d . ~ 2>/dev/null | fzf)
+    set -l dir (fd --type d . ~ 2>/dev/null | awk -F/ '{print NF "\t" $0}' | sort -k1,1n -k2 | cut -f2- | fzf)
     if test -n "$dir"
         cd "$dir"
     end

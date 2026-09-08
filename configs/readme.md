@@ -206,6 +206,8 @@ sudo ./safeUpdateArch.sh
 - Use `-n` / `--dry-run` to print decisions and the pacman command without changing anything.
 - The script auto re-execs itself with `sudo` when not run as root.
 - Edit `PINNED_PACKAGES` at the top of the script to add pins (`"package=version"`).
+- After the upgrade it re-applies Secure Boot maintenance: `limine-enroll-config`, `limine-update`, and re-signs the fwupd EFI binary with `sbctl` — each step best-effort, missing tools are skipped with a warning.
+- If a pinned package ends up installed with a version newer than its pin — updated past it now or in an earlier run — the script ends with a prominent warning box naming the package and pin, reminding you to check that it works and then update or remove the pin.
 
 ### 🌐 serverSetupDebian.sh
 

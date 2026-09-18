@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Youtube Improvements
-// @version     2.1.0
+// @version     2.3.0
 // @match       https://*.youtube.com/*
 // @grant       none
 // @icon        https://www.gstatic.com/youtube/img/branding/favicon/favicon_144x144_v2.png
@@ -17,6 +17,7 @@ const dbg = (...args) => {
 
 const TRASH_ICON_PATH =
 	'M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z';
+const PLAY_ICON_PATH = 'M8 5v14l11-7z';
 
 function ensureStyles() {
 	if (document.getElementById('vm-yt-styles')) return;
@@ -67,7 +68,7 @@ function ensureStyles() {
 		'}',
 		'.vm-wl-search:focus { border-color: #3ea6ff; }',
 		'.vm-wl-search::placeholder { color: #aaaaaa; }',
-		'.vm-wl-combo { width: 170px; }',
+		'.vm-wl-combo { width: 200px; }',
 		'.vm-wl-status { margin-left: auto; color: #aaaaaa; font-size: 13px; }',
 		'.vm-wl-bulk-btn {',
 		'  display: inline-flex;',
@@ -82,6 +83,7 @@ function ensureStyles() {
 		'  font-weight: 500;',
 		'  font-family: inherit;',
 		'  cursor: pointer;',
+		'  text-decoration: none;',
 		'}',
 		'.vm-wl-bulk-btn:hover { background-color: #990000; border-color: #990000; }',
 		'.vm-wl-bulk-btn[aria-disabled="true"] {',
@@ -89,6 +91,9 @@ function ensureStyles() {
 		'  pointer-events: none;',
 		'}',
 		'.vm-wl-bulk-btn svg { width: 18px; height: 18px; fill: #ffffff; flex-shrink: 0; }',
+		'.vm-wl-play-btn { background-color: #272727; color: #f1f1f1; border-color: #3f3f3f; }',
+		'.vm-wl-play-btn:hover { background-color: #3f3f3f; border-color: #3f3f3f; }',
+		'.vm-wl-play-btn svg { fill: #f1f1f1; }',
 		'.vm-wl-bulk-target {',
 		'  outline: 2px solid #cc0000 !important;',
 		'  outline-offset: -2px;',
@@ -326,10 +331,10 @@ function redirectToTSYouTube() {
 	title.setAttribute('data-listeners-added', 'true');
 }
 
-function setIcon(button, pathData) {
+function setIcon(button, pathData, viewBox = '0 -960 960 960') {
 	const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 	svg.setAttribute('height', '24px');
-	svg.setAttribute('viewBox', '0 -960 960 960');
+	svg.setAttribute('viewBox', viewBox);
 	svg.setAttribute('width', '24px');
 	svg.setAttribute('fill', '#fff');
 	const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -456,6 +461,216 @@ function vmApiRemoveErrorBrief(item, videoId) {
 // ── WL Grid Data Layer ────────────────────────────────────────────────
 
 const WL_GRID_MAX = 1000;
+const WL_TEMP_PLAYLIST_MAX = 50;
+const WL_META_CACHE_KEY = 'vm-wl-pubmeta';
+const WL_META_TTL = 7 * 24 * 60 * 60 * 1000;
+
+const WL_AGE_UNITS = {
+	s: 1,
+	sec: 1,
+	secs: 1,
+	second: 1,
+	seconds: 1,
+	m: 60,
+	min: 60,
+	mins: 60,
+	minute: 60,
+	minutes: 60,
+	h: 3600,
+	hr: 3600,
+	hrs: 3600,
+	hour: 3600,
+	hours: 3600,
+	d: 86400,
+	day: 86400,
+	days: 86400,
+	w: 604800,
+	wk: 604800,
+	wks: 604800,
+	week: 604800,
+	weeks: 604800,
+	mo: 2592000,
+	mon: 2592000,
+	mos: 2592000,
+	month: 2592000,
+	months: 2592000,
+	y: 31536000,
+	yr: 31536000,
+	yrs: 31536000,
+	year: 31536000,
+	years: 31536000,
+};
+
+function wlParseAgeSec(text) {
+	if (!text) return null;
+	const m = text.match(
+		/^(?:streamed\s+|premiered\s+)?(\d+)\s*([a-z]+)\s+ago$/i,
+	);
+	if (!m) return null;
+	const mult = WL_AGE_UNITS[m[2].toLowerCase()];
+	return mult ? Number(m[1]) * mult : null;
+}
+
+const wlMetaCache = { entries: null };
+
+function wlMetaCacheLoad() {
+	if (wlMetaCache.entries) return;
+	try {
+		const raw = JSON.parse(localStorage.getItem(WL_META_CACHE_KEY) || '{}');
+		wlMetaCache.entries = new Map(Object.entries(raw.entries || {}));
+	} catch (e) {
+		wlMetaCache.entries = new Map();
+	}
+}
+
+function wlMetaCacheGetFresh(id) {
+	wlMetaCacheLoad();
+	const e = wlMetaCache.entries.get(id);
+	if (!e || Date.now() - e.t > WL_META_TTL) return null;
+	return e;
+}
+
+function wlMetaCachePut(id, fields) {
+	wlMetaCacheLoad();
+	wlMetaCache.entries.set(id, { t: Date.now(), ...fields });
+}
+
+function wlMetaCacheSave(keepIds) {
+	wlMetaCacheLoad();
+	if (keepIds) {
+		const keep = new Set(keepIds);
+		for (const id of [...wlMetaCache.entries.keys()]) {
+			if (!keep.has(id)) wlMetaCache.entries.delete(id);
+		}
+	}
+	try {
+		const entries = {};
+		for (const [id, e] of wlMetaCache.entries) entries[id] = e;
+		localStorage.setItem(WL_META_CACHE_KEY, JSON.stringify({ entries }));
+	} catch (e) {
+		dbg('wlMetaCacheSave: failed', e);
+	}
+}
+
+function wlVideoMeta(v) {
+	return wlMetaCacheGetFresh(v.videoId);
+}
+
+function wlVideoPublishedTs(v) {
+	const e = wlVideoMeta(v);
+	if (e) {
+		if (e.pub != null) return e.pub;
+		if (e.dead) return null;
+	}
+	return v.publishedAgoSec != null
+		? Date.now() - v.publishedAgoSec * 1000
+		: null;
+}
+
+function wlVideoViews(v) {
+	const e = wlVideoMeta(v);
+	if (e && e.views != null) return e.views;
+	return v.views ?? null;
+}
+
+function wlVideoLikes(v) {
+	const e = wlVideoMeta(v);
+	return e && e.likes != null ? e.likes : null;
+}
+
+function wlVideoCategory(v) {
+	const e = wlVideoMeta(v);
+	return e && e.cat ? e.cat : null;
+}
+
+async function vmPlayerMetaFetchOne(videoId) {
+	const ctx = window.ytcfg?.get?.('INNERTUBE_CONTEXT');
+	if (!ctx) return null;
+	try {
+		const resp = await fetch(
+			'https://www.youtube.com/youtubei/v1/player?prettyPrint=false',
+			{
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ context: ctx, videoId }),
+				credentials: 'same-origin',
+			},
+		);
+		if (resp.status !== 200) return null;
+		const data = await resp.json();
+		const mf = data?.microformat?.playerMicroformatRenderer;
+		if (!mf) return { dead: 1 };
+		const views = Number(data?.videoDetails?.viewCount ?? mf.viewCount);
+		return {
+			pub: mf.publishDate ? Date.parse(mf.publishDate) : null,
+			views: Number.isFinite(views) ? views : null,
+			likes: mf.likeCount != null ? Number(mf.likeCount) : null,
+			cat: mf.category ?? null,
+			dead: 0,
+		};
+	} catch (e) {
+		dbg('vmPlayerMetaFetchOne: failed', videoId, e);
+		return null;
+	}
+}
+
+const wlMetaBackfill = { gen: 0, running: false, done: 0, total: 0 };
+
+async function wlMetaBackfillRun() {
+	const st = wlGrid;
+	const snapshot = st.videos.map((v) => v.videoId);
+	const todo = [];
+	for (const id of snapshot) {
+		if (wlMetaCacheGetFresh(id) == null) todo.push(id);
+	}
+	if (todo.length === 0) return;
+
+	const gen = ++wlMetaBackfill.gen;
+	wlMetaBackfill.running = true;
+	wlMetaBackfill.done = 0;
+	wlMetaBackfill.total = todo.length;
+
+	let dirty = 0;
+	let renderTimer = 0;
+
+	const renderSoon = () => {
+		if (gen !== wlMetaBackfill.gen) return;
+		clearTimeout(renderTimer);
+		renderTimer = setTimeout(() => {
+			if (gen !== wlMetaBackfill.gen) return;
+			wlGridRender();
+		}, 500);
+	};
+
+	const worker = async () => {
+		while (todo.length > 0) {
+			if (gen !== wlMetaBackfill.gen) return;
+			const id = todo.shift();
+			const fields = await vmPlayerMetaFetchOne(id);
+			if (fields) {
+				wlMetaCachePut(id, fields);
+				dirty++;
+				if (dirty % 25 === 0) wlMetaCacheSave(snapshot);
+				renderSoon();
+			}
+			wlMetaBackfill.done++;
+			const statusEl = st._toolbar?.status;
+			if (statusEl?.isConnected) wlGridUpdateStatus(statusEl);
+			await wlSleep(75);
+		}
+	};
+
+	const workers = [];
+	for (let i = 0; i < 4; i++) {
+		workers.push(worker());
+		await wlSleep(75);
+	}
+	await Promise.all(workers);
+
+	wlMetaBackfill.running = false;
+	if (dirty > 0) wlMetaCacheSave(snapshot);
+	if (gen === wlMetaBackfill.gen) wlGridRender();
+}
 
 function wlExtractContinuationToken(renderer) {
 	if (!renderer) return null;
@@ -517,10 +732,20 @@ function wlMapRenderer(r) {
 			0
 		: 0;
 	const isPlayable = r.isPlayable !== false;
-	const index = r.index != null ? Number(r.index) : null;
+	const indexRaw = r.index?.simpleText ?? r.index;
+	const index =
+		indexRaw != null && indexRaw !== '' && Number.isFinite(Number(indexRaw))
+			? Number(indexRaw)
+			: null;
+	let publishedAgoSec = null;
+	for (const t of metaRuns) {
+		const parsed = wlParseAgeSec(t);
+		if (parsed != null) publishedAgoSec = parsed;
+	}
 	return {
 		videoId,
 		title,
+		publishedAgoSec,
 		channel,
 		channelBrowseId,
 		channelUrl,
@@ -818,9 +1043,10 @@ const wlGrid = {
 	videos: [],
 	search: '',
 	channel: '',
+	categoryF: '',
 	status: 'all',
 	duration: 'all',
-	sort: 'original',
+	sort: 'added_new',
 	playAllHref: '',
 	shuffleHref: '',
 	bulk: {
@@ -830,6 +1056,7 @@ const wlGrid = {
 		targets: [],
 		confirmTimer: 0,
 	},
+	playFiltered: { button: null, label: null },
 	_datalistLen: -1,
 };
 
@@ -883,6 +1110,8 @@ function wlGridUpdateStatus(labelEl) {
 	if (st.mounting) {
 		labelEl.textContent =
 			total > 0 ? `Loading… (${total} loaded so far)` : 'Loading…';
+	} else if (wlMetaBackfill.running) {
+		labelEl.textContent = `Fetching dates ${wlMetaBackfill.done}/${wlMetaBackfill.total}…`;
 	} else {
 		labelEl.textContent = `Showing ${filtered.length} of ${total}`;
 	}
@@ -894,7 +1123,14 @@ function wlGridFilteredVideos() {
 	return st.videos.filter((v) => {
 		if (query && !v.title.toLowerCase().includes(query)) return false;
 		const channelQuery = st.channel.trim().toLowerCase();
-		if (channelQuery && !v.channel.toLowerCase().includes(channelQuery)) return false;
+		if (channelQuery && !v.channel.toLowerCase().includes(channelQuery))
+			return false;
+		const categoryQuery = st.categoryF.trim().toLowerCase();
+		if (
+			categoryQuery &&
+			(wlVideoCategory(v) || '').toLowerCase() !== categoryQuery
+		)
+			return false;
 		if (st.status === 'unwatched' && v.progressPct > 0) return false;
 		if (st.status === 'progress' && !(v.progressPct > 0 && v.progressPct < 80))
 			return false;
@@ -918,33 +1154,51 @@ function wlGridFilteredVideos() {
 	});
 }
 
+function wlSortIndexCmp(a, b) {
+	return (a.index ?? Infinity) - (b.index ?? Infinity);
+}
+
+function wlSortNumCmp(valFn, dir) {
+	return (a, b) => {
+		const av = valFn(a);
+		const bv = valFn(b);
+		if (av == null && bv == null) return wlSortIndexCmp(a, b);
+		if (av == null) return 1;
+		if (bv == null) return -1;
+		const r = dir === 'desc' ? bv - av : av - bv;
+		return r || wlSortIndexCmp(a, b);
+	};
+}
+
+function wlSortTextCmp(valFn, dir) {
+	return (a, b) => {
+		const r = (valFn(a) ?? '').localeCompare(valFn(b) ?? '');
+		return (dir === 'asc' ? r : -r) || wlSortIndexCmp(a, b);
+	};
+}
+
 function wlGridSortVideos(videos) {
 	const st = wlGrid;
 	const sorted = [...videos];
-	if (st.sort === 'title')
-		sorted.sort((a, b) => a.title.localeCompare(b.title));
-	else if (st.sort === 'channel')
-		sorted.sort((a, b) => a.channel.localeCompare(b.channel));
-	else if (st.sort === 'duration')
-		sorted.sort((a, b) => (b.durationSec ?? -1) - (a.durationSec ?? -1));
-	else if (st.sort === 'progress')
-		sorted.sort((a, b) => b.progressPct - a.progressPct);
-	else if (st.sort === 'views')
-		sorted.sort((a, b) => {
-			if (a.views == null && b.views == null) return 0;
-			if (a.views == null) return 1;
-			if (b.views == null) return -1;
-			return (
-				b.views - a.views ||
-				(a.index ?? Infinity) - (b.index ?? Infinity)
-			);
-		});
-	else
-		sorted.sort((a, b) => {
-			const ai = a.index ?? Infinity;
-			const bi = b.index ?? Infinity;
-			return ai - bi;
-		});
+	const cmp = {
+		added_new: (a, b) => wlSortIndexCmp(a, b),
+		added_old: (a, b) => wlSortIndexCmp(b, a),
+		published_new: wlSortNumCmp(wlVideoPublishedTs, 'desc'),
+		published_old: wlSortNumCmp(wlVideoPublishedTs, 'asc'),
+		title_az: wlSortTextCmp((v) => v.title, 'asc'),
+		title_za: wlSortTextCmp((v) => v.title, 'desc'),
+		channel_az: wlSortTextCmp((v) => v.channel, 'asc'),
+		channel_za: wlSortTextCmp((v) => v.channel, 'desc'),
+		duration_long: wlSortNumCmp((v) => v.durationSec, 'desc'),
+		duration_short: wlSortNumCmp((v) => v.durationSec, 'asc'),
+		progress_high: wlSortNumCmp((v) => v.progressPct, 'desc'),
+		progress_low: wlSortNumCmp((v) => v.progressPct, 'asc'),
+		views_high: wlSortNumCmp(wlVideoViews, 'desc'),
+		views_low: wlSortNumCmp(wlVideoViews, 'asc'),
+		likes_high: wlSortNumCmp(wlVideoLikes, 'desc'),
+		likes_low: wlSortNumCmp(wlVideoLikes, 'asc'),
+	};
+	sorted.sort(cmp[st.sort] || cmp.added_new);
 	return sorted;
 }
 
@@ -1132,13 +1386,23 @@ function wlGridRenderToolbar(container) {
 			'Sort',
 			'vm-wl-sort-list',
 			[
-				['original', 'Date added (newest)'],
-				['title', 'Title (A-Z)'],
-				['channel', 'Channel (A-Z)'],
-				['duration', 'Duration (longest)'],
-				['progress', 'Watch progress (highest)'],
-			['views', 'Views (highest)'],
-		],
+				['added_new', 'Date added (newest)'],
+				['added_old', 'Date added (oldest)'],
+				['published_new', 'Date published (newest)'],
+				['published_old', 'Date published (oldest)'],
+				['title_az', 'Title (A-Z)'],
+				['title_za', 'Title (Z-A)'],
+				['channel_az', 'Channel (A-Z)'],
+				['channel_za', 'Channel (Z-A)'],
+				['duration_long', 'Duration (longest)'],
+				['duration_short', 'Duration (shortest)'],
+				['progress_high', 'Watch progress (highest)'],
+				['progress_low', 'Watch progress (lowest)'],
+				['views_high', 'Views (highest)'],
+				['views_low', 'Views (lowest)'],
+				['likes_high', 'Likes (highest)'],
+				['likes_low', 'Likes (lowest)'],
+			],
 			(v) => {
 				st.sort = v;
 				wlGridRender();
@@ -1169,6 +1433,41 @@ function wlGridRenderToolbar(container) {
 	channelDatalist.id = 'vm-wl-channels';
 	row.appendChild(channelDatalist);
 
+	const categoryInput = document.createElement('input');
+	categoryInput.type = 'search';
+	categoryInput.className = 'vm-wl-search vm-wl-combo';
+	categoryInput.placeholder = 'Category';
+	categoryInput.setAttribute('list', 'vm-wl-categories');
+	categoryInput.setAttribute('aria-label', 'Filter by category');
+	let categoryTimer = 0;
+	categoryInput.addEventListener('input', () => {
+		clearTimeout(categoryTimer);
+		categoryTimer = setTimeout(() => {
+			const raw = categoryInput.value;
+			const cleaned = wlGrid._catLookup?.get(raw) ?? raw;
+			if (cleaned !== raw) categoryInput.value = cleaned;
+			st.categoryF = cleaned;
+			wlGridRender();
+		}, 150);
+	});
+	row.appendChild(categoryInput);
+
+	const categoryDatalist = document.createElement('datalist');
+	categoryDatalist.id = 'vm-wl-categories';
+	row.appendChild(categoryDatalist);
+
+	const playButton = document.createElement('a');
+	playButton.className = 'vm-wl-bulk-btn vm-wl-play-btn';
+	playButton.setAttribute('aria-label', 'Play filtered Watch Later videos');
+	playButton.setAttribute('aria-disabled', 'true');
+	setIcon(playButton, PLAY_ICON_PATH, '0 0 24 24');
+	const playLabel = document.createElement('span');
+	playLabel.textContent = 'Play filtered';
+	playButton.appendChild(playLabel);
+	st.playFiltered.button = playButton;
+	st.playFiltered.label = playLabel;
+	row.appendChild(playButton);
+
 	const bulkButton = document.createElement('button');
 	bulkButton.type = 'button';
 	bulkButton.className = 'vm-wl-bulk-btn';
@@ -1190,7 +1489,7 @@ function wlGridRenderToolbar(container) {
 	toolbar.appendChild(row);
 	container.appendChild(toolbar);
 
-	wlGrid._toolbar = { status, channelDatalist };
+	wlGrid._toolbar = { status, channelDatalist, categoryDatalist };
 }
 
 function wlGridRefreshChannelDatalist() {
@@ -1214,28 +1513,70 @@ function wlGridRefreshChannelDatalist() {
 	}
 }
 
+function wlGridRefreshCategoryDatalist() {
+	const st = wlGrid;
+	const dl = st._toolbar?.categoryDatalist;
+	if (!dl) return;
+	const counts = new Map();
+	for (const v of st.videos) {
+		const cat = wlVideoCategory(v);
+		if (!cat) continue;
+		counts.set(cat, (counts.get(cat) || 0) + 1);
+	}
+	dl.replaceChildren();
+	st._catLookup = new Map();
+	const names = [...counts.keys()].sort((a, b) => a.localeCompare(b));
+	for (const name of names) {
+		const display = `${name} (${counts.get(name)})`;
+		st._catLookup.set(display, name);
+		const opt = document.createElement('option');
+		opt.value = display;
+		dl.appendChild(opt);
+	}
+}
+
 function wlGridBulkRefresh() {
 	const st = wlGrid;
 	const btn = st.bulk.button;
 	const lbl = st.bulk.label;
-	if (!btn?.isConnected || st.bulk.phase !== 'idle') return;
-
-	const hasFilters = Boolean(
-		st.search.trim() ||
-		st.channel.trim() ||
-		st.status !== 'all' ||
-		st.duration !== 'all',
-	);
-	if (!hasFilters) {
-		lbl.textContent = 'Remove filtered';
-		btn.setAttribute('aria-disabled', 'true');
-		btn.title = 'Filter the list first';
-		return;
+	if (btn?.isConnected && st.bulk.phase === 'idle') {
+		const hasFilters = Boolean(
+			st.search.trim() ||
+			st.channel.trim() ||
+			st.categoryF.trim() ||
+			st.status !== 'all' ||
+			st.duration !== 'all',
+		);
+		if (!hasFilters) {
+			lbl.textContent = 'Remove filtered';
+			btn.setAttribute('aria-disabled', 'true');
+			btn.title = 'Filter the list first';
+		} else {
+			const count = wlGridFilteredVideos().length;
+			lbl.textContent = `Remove filtered (${count})`;
+			btn.setAttribute('aria-disabled', count === 0 ? 'true' : 'false');
+			btn.title = count === 0 ? 'No videos match the current filters' : '';
+		}
 	}
-	const count = wlGridFilteredVideos().length;
-	lbl.textContent = `Remove filtered (${count})`;
-	btn.setAttribute('aria-disabled', count === 0 ? 'true' : 'false');
-	btn.title = count === 0 ? 'No videos match the current filters' : '';
+
+	const playBtn = st.playFiltered.button;
+	const playLbl = st.playFiltered.label;
+	if (playBtn?.isConnected && playLbl) {
+		const count = wlGridFilteredVideos().filter((v) => v.isPlayable).length;
+		const queued = Math.min(count, WL_TEMP_PLAYLIST_MAX);
+		playLbl.textContent =
+			count > WL_TEMP_PLAYLIST_MAX
+				? `Play filtered (${queued}/${count})`
+				: `Play filtered (${count})`;
+		playBtn.setAttribute('aria-disabled', count === 0 ? 'true' : 'false');
+		const playHref = wlGridPlayFilteredHref();
+		if (playHref) playBtn.setAttribute('href', playHref);
+		else playBtn.removeAttribute('href');
+		playBtn.title =
+			count > WL_TEMP_PLAYLIST_MAX
+				? `YouTube temp playlists hold at most ${WL_TEMP_PLAYLIST_MAX} videos — the first ${queued} will queue`
+				: '';
+	}
 }
 
 function wlGridBulkClearHighlights() {
@@ -1288,6 +1629,7 @@ function wlGridBulkHandleClick() {
 	const hasFilters = Boolean(
 		st.search.trim() ||
 		st.channel.trim() ||
+		st.categoryF.trim() ||
 		st.status !== 'all' ||
 		st.duration !== 'all',
 	);
@@ -1309,6 +1651,15 @@ function wlGridBulkHandleClick() {
 	}, 2000);
 }
 
+function wlGridPlayFilteredHref() {
+	const videos = wlGridSortVideos(wlGridFilteredVideos()).filter(
+		(v) => v.isPlayable,
+	);
+	if (videos.length === 0) return null;
+	const videoIds = videos.slice(0, WL_TEMP_PLAYLIST_MAX).map((v) => v.videoId);
+	return '/watch_videos?video_ids=' + videoIds.join(',');
+}
+
 function wlGridRenderGrid() {
 	const st = wlGrid;
 	const grid = st.root?.querySelector('.vm-wl-grid');
@@ -1324,6 +1675,7 @@ function wlGridRenderGrid() {
 
 	if (wlGrid._toolbar) wlGridUpdateStatus(wlGrid._toolbar.status);
 	wlGridBulkRefresh();
+	wlGridRefreshCategoryDatalist();
 	if (st.videos.length !== st._datalistLen) {
 		st._datalistLen = st.videos.length;
 		wlGridRefreshChannelDatalist();
@@ -1422,6 +1774,7 @@ async function wlGridMount() {
 		st.mounted = true;
 
 		wlGridRenderGrid();
+		wlMetaBackfillRun();
 	} finally {
 		st.mounting = false;
 	}
@@ -1446,13 +1799,16 @@ function wlGridUnmount() {
 	st.videos = [];
 	st.search = '';
 	st.channel = '';
+	st.categoryF = '';
 	st.status = 'all';
 	st.duration = 'all';
-	st.sort = 'original';
+	st.sort = 'added_new';
 	st._datalistLen = -1;
 	st.bulk.phase = 'idle';
 	st.bulk.targets = [];
 	clearTimeout(st.bulk.confirmTimer);
+	st.playFiltered.button = null;
+	st.playFiltered.label = null;
 }
 
 function watchLaterGridPage() {
